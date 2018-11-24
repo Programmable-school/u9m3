@@ -13,7 +13,7 @@
 
 Route::get('/', function () {
     return view('home');
-})->middleware('auth');　★１
+})->middleware('auth');
 
 //Auth::routes();　
 
