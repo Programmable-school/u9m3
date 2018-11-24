@@ -6,7 +6,7 @@
                     <div class="card-header">Example Component</div>
 
                     <div class="card-body">
-                        I'm an example component.
+                        I'm an example component. <br>
                         <span class="test">{{ test }}</span>
                     </div>
                 </div>
@@ -15,13 +15,19 @@
     </div>
 </template>
 
+<style scoped>
+    .test {
+        color: red;
+    }
+</style>
+
 <script>
     export default {
         props: {
             test: String,
         },
         mounted() {
-            console.log('Component mounted.')
+            console.log('ExampleComponent mounted.')
         },
     }
 </script>
