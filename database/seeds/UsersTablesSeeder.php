@@ -12,15 +12,22 @@ class UsersTableSeeder extends Seeder
     */
     public function run()
     {
-      DB::table('users')->insert(
+        DB::table('users')->insert(
         [
             [
-                'name' => 'メイプル　ノブ',
-                'loginid' => 'maple_nobu',
+                'name' => 'メイプル　管理者',
+                'loginid' => 'maple_admin',
                 'password' => Hash::make('password'),
-            ]
+                'role' => 5,
+            ],
+            [
+                'name' => 'メイプル　ユーザ',
+                'loginid' => 'maple_user',
+                'password' => Hash::make('password'),
+                'role' => 10,
+            ],
         ]);
 
-      factory(App\User::class, 100)->create();
+        factory(App\User::class, 100)->create();
     }
 }
