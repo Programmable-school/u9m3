@@ -3,10 +3,10 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card card-default">
-                    <div class="card-header">Example Component</div>
+                    <div class="card-header">Admin Component</div>
 
                     <div class="card-body">
-                      I'm an example compopnent
+                      I'm an admin compopnent
                       <div class="roledetail">
                         ID: {{ id }}<br>
                         Name: {{ name }}<br>
@@ -22,7 +22,7 @@
 
 <style scoped>
 .test {
-  color: red;
+  color: blue;
   font-size: 4vm;
 }
 </style>
@@ -36,7 +36,7 @@ export default {
     logout: String,
   },
   mounted() {
-    console.log("ExampleComponent mounted.");
+    console.log("AdminComponent mounted.");
     console.log('name: ' + this.name);
   },
 
