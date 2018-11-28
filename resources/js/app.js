@@ -4,6 +4,10 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
+
+
+require('./bootstrap');
+
 import Vue from 'vue';
 import Vuetify from 'vuetify';
 import colors from 'vuetify/es5/util/colors';
@@ -20,9 +24,6 @@ import 'vuetify/dist/vuetify.min.css';
 import 'material-design-icons-iconfont/dist/material-design-icons.css';
 
 import router from './router';
-
-require('./bootstrap');
-
 window.Vue = require('vue');
 
 /**

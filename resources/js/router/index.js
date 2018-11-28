@@ -6,6 +6,10 @@ import example_component from '../components/ExampleComponent.vue';
 import admin_component from '../components/AdminComponent.vue';
 import r_link from '../components/RouterLink.vue';
 
+Vue.component('example-component', example_component)
+Vue.component('admin-component', admin_component)
+Vue.component('r-link', r_link)
+
 import home from '../components/HomeComponent.vue';
 import admin_user from '../components/Admin/UserComponent.vue';
 
