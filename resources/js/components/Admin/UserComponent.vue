@@ -3,7 +3,7 @@
     <v-card xs12 class="m-3 px-3">
 
       <v-card-title class="title">
-        <v-icon class="pr-2">{{ $route.meta.icon }}</v-icon> {{ $route.meta.name }} {{ /* 社員管理 */ }}
+        <v-icon class="pr-2">{{ $route.meta.icon }}</v-icon> {{ $route.meta.name }} {{ 社員管理 }}
         <v-spacer></v-spacer>
         <v-spacer></v-spacer>
         <v-text-field
