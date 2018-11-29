@@ -11,18 +11,8 @@ require('./bootstrap');
 import Vue from 'vue';
 import Vuetify from 'vuetify';
 import colors from 'vuetify/es5/util/colors';
-
-Vue.use(Vuetify, {
-    theme: {
-        primary: colors.indigo.base,
-        secondary: colors.blue.base,
-        accent: colors.amber.base,
-    }
-});
-
 import 'vuetify/dist/vuetify.min.css';
 import 'material-design-icons-iconfont/dist/material-design-icons.css';
-
 import router from './router';
 window.Vue = require('vue');
 
@@ -33,9 +23,28 @@ window.Vue = require('vue');
  *
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
+Vue.component('example-component', example_component)
+Vue.component('admin-component', admin_component)
+Vue.component('r-link', r_link)
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+//
+import home from '../components/HomeComponent.vue'
+import admin_user from '../components/Admin/UserComponent.vue'
+Vue.use(Vuetify, {
+    theme: {
+        primary: colors.indigo.base,
+        secondary: colors.blue.base,
+        accent: colors.amber.base,
+    }
+});
 
+export default new Router({
+    mode: 'history',
+    routes: [
+        { path: '/', name: 'home', component: home, meta: { name: 'ホーム', icon: 'home' } },
+        { path: '/admin/user', name: 'admin_user', component: admin_user, meta: { name: '社員管理', icon: 'supervisor_account' } },
+    ],
+})
 // const files = require.context('./', true, /\.vue$/i)
 
 // files.keys().map(key => {
