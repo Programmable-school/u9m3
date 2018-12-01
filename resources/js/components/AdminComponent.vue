@@ -9,7 +9,7 @@
 
     <v-toolbar color="primary" dark fixed app clipped-left>
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-toolbar-title>{{ title }}</v-toolbar-title>
+      <v-toolbar-title>{{title}}</v-toolbar-title>
       <v-spacer></v-spacer>
       {{ name }}
       <v-btn icon @click="axiosLogout()">
@@ -21,7 +21,7 @@
     </v-toolbar>
 
     <v-content>
-      <v-container fluid fill-height>
+      <v-container fluid fill-height
         <v-layout justify-center fluid column>
           <v-fade-transition mode="out-in">
             <router-view @axios-logout="axiosLogout"></router-view>
@@ -36,35 +36,27 @@
   </v-app>
 </template>
 
-<style scoped>
-.test {
-  color: blue;
-  font-size: 4vm;
-}
-</style>
-
 <script>
 export default {
-  name: 'AdminComponent',
-
+  name: "AdminComponent",
   props: {
     name: String,
-    logout: String,
+    logout: String
   },
-
   data: () => ({
     drawer: false,
-    footer: 'foo-----footer',
-    title: 'tit-----title',
+    footer: "foo-----footer",
+    title: "tit------title"
   }),
-
   mounted() {
     console.log("AdminComponent mounted.");
-
-    if (process.env.MIX_FOOTER) { this.footer = process.env.MIX_FOOTER }
-    if (process.env.MIX_TITLE) { this.title = process.env.MIX_TITLE }
+    if (process.env.MIX_FOOTER) {
+      this.footer = process.env.MIX_FOOTER;
+    }
+    if (process.env.MIX_TITLE) {
+      this.title = process.env.MIX_TITLE;
+    }
   },
-
   methods: {
     axiosLogout: function() {
       axios
@@ -74,7 +66,6 @@ export default {
             console.log(response);
           }.bind(this)
         )
-
         .catch(
           function(error) {
             console.log(error);
