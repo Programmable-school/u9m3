@@ -3,7 +3,7 @@
     <v-card xs12 class="m-3 px-3">
 
       <v-card-title class="title">
-        <v-icon class="pr-2">{{ $route.meta.icon }}</v-icon> {{ $route.meta.name }} {{ 社員管理 }}
+        <v-icon class="pr-2">{{ $route.meta.icon }}</v-icon> {{ $route.meta.name }} {{ /* 社員管理 */ }}
         <v-spacer></v-spacer>
         <v-spacer></v-spacer>
         <v-text-field
@@ -43,13 +43,16 @@
 <script>
   export default {
     name: 'UserComponent',
+
     props: {
       logout: String,
     },
+
     data: () => ({
       loading: true,
       search: '',
       pagination: { sortBy: 'name', descending: false, },
+
       tabledata: [],
       headers: [
         { align: 'center', sortable: false, text: 'No',       },
@@ -58,17 +61,21 @@
         { align: 'center', sortable: true,  text: '権限',     value: 'role' },
       ],
     }),
+
     created() {
       console.log('User Component created.')
       this.initialize()
     },
+
     methods: {
       initialize: function() {
         this.getUsers()
       },
+
       getUsers() {
         this.loading = true
         axios.post('/api/admin/user')
+
         .then( function (response) {
           this.loading = false
 console.log(response)
@@ -77,6 +84,7 @@ console.log(response)
             this.setRole()
           }
         }.bind(this))
+
         .catch(function (error) {
           this.loading = false
           console.log(error)
@@ -89,6 +97,7 @@ console.log(response)
           }
         }.bind(this))
       },
+
       setRole() {
         for (var i=0; i<this.tabledata.length; i++) {
           if (this.tabledata[i].role) {
