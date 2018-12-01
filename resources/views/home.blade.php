@@ -12,7 +12,7 @@
 </head>
 <body>
   <div id="app">
-    @can('admin-higher')
+    @if( Auth::user()->role <= 5)
       <admin-component
         id="{{ Auth::user()->id }}"
         name="{{ Auth::user()->name }}"
@@ -28,7 +28,7 @@
         logout="{{ route('logout') }}"
       >
       </example-component>
-    @endcan
+    @endif
   </div>
   <script src=" {{ mix('js/app.js') }} "></script>
 </body>
