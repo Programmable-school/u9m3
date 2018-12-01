@@ -9,7 +9,7 @@ import colors from "vuetify/es5/util/colors";
 
 Vue.use(Vuetify, {
     theme: {
-        primary: colors.indigo.base,
+        primary: colors.amber.base,
         secondary: colors.blue.base,
         accent: colors.amber.base
     }

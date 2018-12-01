@@ -25656,7 +25656,7 @@ __webpack_require__(18);
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuetify___default.a, {
     theme: {
-        primary: __WEBPACK_IMPORTED_MODULE_2_vuetify_es5_util_colors___default.a.indigo.base,
+        primary: __WEBPACK_IMPORTED_MODULE_2_vuetify_es5_util_colors___default.a.amber.base,
         secondary: __WEBPACK_IMPORTED_MODULE_2_vuetify_es5_util_colors___default.a.blue.base,
         accent: __WEBPACK_IMPORTED_MODULE_2_vuetify_es5_util_colors___default.a.amber.base
     }
@@ -74480,11 +74480,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   mounted: function mounted() {
     console.log("AdminComponent mounted.");
 
-    if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_FOOTER) {
-      this.footer = Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_FOOTER;
+    if (true) {
+      this.footer = "フッター文字列を指定";
     }
-    if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_TITLE) {
-      this.title = Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_TITLE;
+    if (true) {
+      this.title = "タイトル指定";
     }
   },
 
