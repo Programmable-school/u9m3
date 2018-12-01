@@ -235,7 +235,7 @@ export default {
         .then(
           function(response) {
             this.$emit("reload");
-            alert(this.items.name + "\n" + "を削除しました");
+            alert(this.items.name + "\n" + "を削除しました。");
             this.close(); //保存が正常に終了したら閉じる
           }.bind(this)
         )
