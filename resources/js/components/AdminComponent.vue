@@ -1,3 +1,4 @@
+
 <template>
   <v-app id="app">
     <v-navigation-drawer v-model="drawer" clipped fixed app >
@@ -21,7 +22,7 @@
     </v-toolbar>
 
     <v-content>
-      <v-container fluid fill-height>
+      <v-container fluid fill-height
         <v-layout justify-center fluid column>
           <v-fade-transition mode="out-in">
             <router-view @axios-logout="axiosLogout"></router-view>
@@ -36,62 +37,41 @@
   </v-app>
 </template>
 
-<style scoped>
-.test {
-  color: blue;
-  font-size: 4vm;
-}
-</style>
-
 <script>
-export default {
-  name: 'AdminComponent',
-
-  props: {
-    name: String,
-    logout: String,
-  },
-
-  data: () => ({
-    drawer: false,
-    footer: 'foo-----footer',
-    title: 'tit-----title',
-  }),
-
-  mounted() {
-    console.log("AdminComponent mounted.");
-
-    if (process.env.MIX_FOOTER) { this.footer = process.env.MIX_FOOTER }
-    if (process.env.MIX_TITLE) { this.title = process.env.MIX_TITLE }
-  },
-
-  methods: {
-    axiosLogout: function() {
-      axios
-        .post(this.logout)
-        .then(
-          function(response) {
-            console.log(response);
-          }.bind(this)
-        )
-
-        .catch(
-          function(error) {
-            console.log(error);
-            if (error.response) {
-              if (error.response.status) {
-                if (
-                  error.response.status == 401 ||
-                  error.response.status == 419
-                ) {
-                  var parser = new URL(this.logout);
-                  location.href = parser.origin;
-                }
+  export default {
+    name: 'AdminComponent',
+    props: {
+      name: String,
+      logout: String,
+    },
+    data: () => ({
+      drawer: false,
+      footer: 'foo-----footer',
+      title: 'tit------title',
+    }),
+    mounted() {
+      console.log('AdminComponent mounted.')
+      if (process.env.MIX_FOOTER) { this.footer = process.env.MIX_FOOTER }
+      if (process.env.MIX_TITLE) { this.title = process.env.MIX_TITLE }
+    },
+    methods: {
+      axiosLogout: function() {
+        axios.post(this.logout)
+        .then( function (response) {
+          console.log(response)
+        }.bind(this))
+        .catch(function (error) {
+          console.log(error)
+          if (error.response) {
+            if (error.response.status) {
+              if (error.response.status == 401 || error.response.status == 419) {
+                var parser = new URL(this.logout)
+                location.href=parser.origin
               }
             }
-          }.bind(this)
-        );
-    }
+          }
+        }.bind(this))
+      },
+    },
   }
-};
 </script>
