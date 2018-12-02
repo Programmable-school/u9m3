@@ -10,6 +10,9 @@ use Validator;
 
 class UserController extends Controller
 {
+    /**
+     * User index
+     */
     public function index()
     {
     Log::Debug(__CLASS__.':'.__FUNCTION__.' index ');
@@ -18,6 +21,9 @@ class UserController extends Controller
     return ['users' => $users];
     }
 
+    /**
+     * user store $ createも
+     */
     public function store(Request $request)
     {
     Log::Debug(__CLASS__.':'.__FUNCTION__.' store ');
@@ -29,6 +35,38 @@ class UserController extends Controller
     return $this->storeUser($data);
     }
 
+    /**
+     * ユーザ削除
+     */
+    public function destroy(Request $request)
+    {
+        Log::Debug(__CLASS__.':'.__FUNCTION__.' destroy :'. print_r($request->all(),true));
+
+        $data = $request->all();
+
+        // loginID指定あり？
+        if (trim($data['loginid'] == '')) {
+            return response()->json(['message' => 'loginID Not Found' ], 422);
+        }
+
+        // ユーザテーブルから該当者のデータを取得
+        $user = User::where('loginid', $data['loginid'])->first();
+
+        // 当事者データなし -> エラー
+        if (! $user) {
+            return response()->json(['message' => 'User Not Found'], 422);
+        }
+        $user->delete();
+
+        return ['data', $user];
+    }
+     
+
+
+    /**
+     * ユーザの新規登録か、更新を切り分け対処する
+     * 判定でエラーになった場合は自動的にリダイレクト、json吐き出す
+     */
     public function storeUser(array $data)
     {
         // ユーザテーブルから該当者データを取得
