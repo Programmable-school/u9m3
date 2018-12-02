@@ -102,4 +102,54 @@ class UserController extends Controller
         // RETURN
         return ['data' => $user];
     }
+
+    private function validator(array $data)
+    {
+        Log::Debug(__CLASS__.':'.__FUNCTION__.' validator :'. print_r($data, true));
+
+        // ログインIDに許可する「記号」
+        //          ,-.@_  |;
+        $ID_KIGO = ',-.@_\\|';
+
+        // パスワードに許可する「記号」
+        //       !"#$%& '()*+,-. /:;<=>?@   \[  ]^_`{  |}~
+        $KIGO = '!"#$%&\'()*+,-.\/:;<=>?@\\\\[\\]^_`{\\|}~';
+
+        // 入力項目チェック(必須、文字数など)
+        $validator = Validator::make($data, [
+
+            // 指名：必須、最長2文字、橙64文字
+            'name' => [
+                'required',
+                'min:2',
+                'max:64',
+            ],
+
+            // ログインID
+            'loginid' => [
+                'required',
+                'min:6',
+                'max:128',
+                'unique:users,loginid,'.$data['loginid'].',loginid',  // 同じログインIDは登録不可
+                'regex:/[a-zA-Z\d'.$id_KIGO.']+\z/',
+                // 英小文字(a-z) or 英大文字(A-Z)、数字(\z)、記号($ID_KIGO)以外の文字はエラー
+            ],
+
+            // パスワード
+            'pass' => [
+                'nullable',
+                'min:4',
+                'max:128',
+                'regex:/\A(?=.*?[a-zA-Z])(?=.*?\d)(?=.*?['.$KIGO.'])[a-zA-Z\d'.$KIGO.']+\z/',
+                // 必ず英小文字、英大文字、記号、数字を1文字含む(\A)こと
+            ],
+        ])->validate();
+
+        if ($data['pass'] != '') {
+            $data['password'] = Hash::make($data['pass']);
+        }
+
+        return $data;
+    }
+
 }
