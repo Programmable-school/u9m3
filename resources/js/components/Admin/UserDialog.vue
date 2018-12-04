@@ -10,7 +10,7 @@
       <v-card-text>
         <v-container>
           <v-layout column wrap>
-            <v-text-field class="pb-3" label="名前" placeholder="氏名を入力してください"
+            <v-text-field class="pb-3" label="名前" placeholder="氏名を入力してください."
                           v-model="items.name"    
                           :error-messages="error.name"
                           :rules="[rules.required, rules.min2]"
