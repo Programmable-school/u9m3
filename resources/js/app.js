@@ -20,6 +20,9 @@ import "material-design-icons-iconfont/dist/material-design-icons.css";
 // Vue-Router
 import router from "./router";
 
+// moment
+window.moment = require('moment')
+
 // Main app
 const app = new Vue({
     el: "#app",

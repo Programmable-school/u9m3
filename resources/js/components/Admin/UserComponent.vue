@@ -42,23 +42,36 @@
         </template>
 
       </v-data-table>
+
+      <v-card-actions>
+        <v-btn flat block color="primary" @click="dialogOpen(null)"><v-icon>person_add</v-icon>新規追加</v-btn>
+        <v-spacer></v-spacer>
+        <csv-download url="/api/admin/user/download" color="primary"></csv-download>
+      </v-card-actions>
     </v-card>
   </v-flex>
 </template>
 
 <script>
   import user_dialog from './UserDialog.vue'
+  import csv_download from './CsvDownload.vue'
+
   export default {
     name: 'UserComponent',
+
     components: {
       'user-dialog': user_dialog,
+      'csv_download': csv_download, 
     },
+
     props: {
     },
+
     data: () => ({
       loading: false,
       search: '',
       pagination: { sortBy: 'name', descending: false, },
+
       tabledata: [],
       headers: [
         { align: 'center', sortable: false, text: 'No',       },
@@ -68,22 +81,27 @@
         { align: 'center', sortable: false, text: 'アクション',       },
       ],
     }),
+
     created() {
       if (process.env.MIX_DEBUG) console.log('User Component created.')
       this.initialize()
     },
+
     methods: {
       initialize() {
         this.getUsers()
       },
+
       reload() {
         if (process.env.MIX_DEBUG) console.log('User Component reload')
         this.getUsers()
       },
+
       setsearch(id) {
         if (process.env.MIX_DEBUG) console.log('User Component set Search')
         this.search = id
       },
+
       getUsers() {
         if (process.env.MIX_DEBUG) console.log('User Component getUsers')
         this.loading = true
@@ -96,6 +114,7 @@
             this.setRole()
           }
         }.bind(this))
+
         .catch(function (error) {
           this.loading = false
           console.log(error)
@@ -104,6 +123,7 @@
           }
         }.bind(this))
       },
+
       setRole() {
         for (var i=0; i<this.tabledata.length; i++) {
           if (this.tabledata[i].role) {
@@ -112,6 +132,7 @@
           }
         }
       },
+      
       dialogOpen(item,flg) {
         if (process.env.MIX_DEBUG) console.log('User Component dialog open')
         this.$refs.userDialog.open(item, (flg || false))
