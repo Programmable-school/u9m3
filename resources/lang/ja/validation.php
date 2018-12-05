@@ -145,6 +145,10 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'name' => '名前',
+        'loginid' => 'ログインID',
+        'pass' => 'パスワード',
+    ],
 
 ];
