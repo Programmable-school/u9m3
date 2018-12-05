@@ -125,7 +125,7 @@
         // USER UPDATE
         if (this.type == 'U') {
           this.title = "編集"
-          this.titlecolor = 'accent',
+          this.titlecolor = 'black',
           this.placeholder_password = "変更する場合はパスワードを指定してください（未指定の場合は変更しない）"
         }
         // USER DELETE
