@@ -36,6 +36,10 @@ export default new Router({
                 name: "社員管理",
                 icon: "supervisor_account"
             }
-        }
-    ]
+        },
+        {
+            path: '*',
+            redirect: '/home'
+        },
+    ],
 });
