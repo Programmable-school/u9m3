@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
 use App\User;
 use Validator;
+use App\Facades\Csv;
 
 class UserController extends Controller
 {
@@ -16,6 +17,15 @@ class UserController extends Controller
 
     $users = User::all();
     return ['users' => $users];
+  }
+
+  public function download(Request $request)
+  {
+    Log::Debug(__CLASS__.':'.__FUNCTION__);
+
+    $csv_data = User::get(['loginid', 'name', 'role'])->toArray();
+    $csv_header = ['loginid', 'name', 'role'];
+    return Csv::download($csv_data, $csv_header, 'test.csv');
   }
 
   public function store(Request $request)
