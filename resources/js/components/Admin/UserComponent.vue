@@ -47,108 +47,87 @@
       <v-card-actions>
         <v-btn flat block color="primary" @click="dialogOpen(null)"><v-icon>person_add</v-icon>新規追加</v-btn>
         <v-spacer></v-spacer>
-        <csv-download url="/api/admin/user/download" color="primary"></csv-download>
-        <csv-upload url="/api/admin/user/upload" multiple="false" @reload="reload" @axios-logout="$emit('axios-logout')"></csv-upload>
+        <csv-download url="/api/admin/user/download" color="primary" @axios-logout="$emit('axios-logout')"></csv-download>
+        <csv-upload   url="/api/admin/user/upload" multiple="false" @reload="reload"  @axios-logout="$emit('axios-logout')"></csv-upload>
       </v-card-actions>
     </v-card>
   </v-flex>
 </template>
 
 <script>
-import user_dialog from "./UserDialog.vue";
-import csv_download from "./CsvDownload.vue";
-import csv_upload from "./CsvUpload.vue";
-
-export default {
-  name: "UserComponent",
-
-  components: {
-    "user-dialog": user_dialog,
-    csv_download: csv_download,
-    "csv-upload": csv_upload
-  },
-
-  props: {},
-
-  data: () => ({
-    loading: false,
-    search: "",
-    pagination: { sortBy: "name", descending: false },
-
-    tabledata: [],
-    headers: [
-      { align: "center", sortable: false, text: "No" },
-      { align: "left", sortable: true, text: "社員ID", value: "loginid" },
-      { align: "left", sortable: true, text: "氏名", value: "name" },
-      { align: "center", sortable: true, text: "権限", value: "role" },
-      { align: "center", sortable: false, text: "アクション" }
-    ]
-  }),
-
-  created() {
-    if (process.env.MIX_DEBUG) console.log("User Component created.");
-    this.initialize();
-  },
-
-  methods: {
-    initialize() {
-      this.getUsers();
+  import user_dialog from './UserDialog.vue'
+  import csv_download from './CsvDownload.vue'
+  import csv_upload from './CsvUpload.vue'
+  export default {
+    name: 'UserComponent',
+    components: {
+      'user-dialog': user_dialog,
+      'csv-download': csv_download,
+      'csv-upload': csv_upload,
     },
-
-    reload() {
-      if (process.env.MIX_DEBUG) console.log("User Component reload");
-      this.getUsers();
+    props: {
     },
-
-    setsearch(id) {
-      if (process.env.MIX_DEBUG) console.log("User Component set Search");
-      this.search = id;
+    data: () => ({
+      loading: false,
+      search: '',
+      pagination: { sortBy: 'name', descending: false, },
+      tabledata: [],
+      headers: [
+        { align: 'center', sortable: false, text: 'No',       },
+        { align: 'left',   sortable: true,  text: '社員ID',   value: 'loginid' },
+        { align: 'left',   sortable: true,  text: '氏名',     value: 'name' },
+        { align: 'center', sortable: true,  text: '権限',     value: 'role' },
+        { align: 'center', sortable: false, text: 'アクション',       },
+      ],
+    }),
+    created() {
+      if (process.env.MIX_DEBUG) console.log('User Component created.')
+      this.initialize()
     },
-
-    getUsers() {
-      if (process.env.MIX_DEBUG) console.log("User Component getUsers");
-      this.loading = true;
-      axios
-        .post("/api/admin/user")
-        .then(
-          function(response) {
-            this.loading = false;
-            if (process.env.MIX_DEBUG) console.log(response);
-            if (response.data.users) {
-              this.tabledata = response.data.users;
-              this.setRole();
-            }
-          }.bind(this)
-        )
-
-        .catch(
-          function(error) {
-            this.loading = false;
-            console.log(error);
-            if (error.response && [401, 419].includes(error.response.status)) {
-              this.$emit("axios-logout");
-            }
-          }.bind(this)
-        );
-    },
-
-    setRole() {
-      for (var i = 0; i < this.tabledata.length; i++) {
-        if (this.tabledata[i].role) {
-          if (this.tabledata[i].role == 5) {
-            this.tabledata[i].role = "管理者";
+    methods: {
+      initialize() {
+        this.getUsers()
+      },
+      reload() {
+        if (process.env.MIX_DEBUG) console.log('User Component reload')
+        this.getUsers()
+      },
+      setsearch(id) {
+        if (process.env.MIX_DEBUG) console.log('User Component set Search')
+        this.search = id
+      },
+      getUsers() {
+        if (process.env.MIX_DEBUG) console.log('User Component getUsers')
+        this.loading = true
+        axios.post('/api/admin/user')
+        .then( function (response) {
+          this.loading = false
+          if (process.env.MIX_DEBUG) console.log(response)
+          if (response.data.users) {
+            this.tabledata = response.data.users
+            this.setRole()
           }
-          if (this.tabledata[i].role == 10) {
-            this.tabledata[i].role = "ユーザ";
+        }.bind(this))
+        .catch(function (error) {
+          this.loading = false
+          console.log(error)
+          if (error.response && [401, 419].includes(error.response.status)) {
+            this.$emit('axios-logout')
+          }
+        }.bind(this))
+      },
+      setRole() {
+        for (var i=0; i<this.tabledata.length; i++) {
+          if (this.tabledata[i].role) {
+            if (this.tabledata[i].role == 5) { this.tabledata[i].role = '管理者'  }
+            if (this.tabledata[i].role == 10) { this.tabledata[i].role = 'ユーザ'  }
           }
         }
+      },
+      dialogOpen(item,flg) {
+        if (process.env.MIX_DEBUG) console.log('User Component dialog open')
+        this.$refs.userDialog.open(item, (flg || false))
       }
     },
-
-    dialogOpen(item, flg) {
-      if (process.env.MIX_DEBUG) console.log("User Component dialog open");
-      this.$refs.userDialog.open(item, flg || false);
-    }
   }
-};
 </script>
