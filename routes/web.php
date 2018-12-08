@@ -29,6 +29,8 @@ Route::group( ['middleware' => ['auth', 'can:admin']], function() {
   Route::post('/api/admin/user/destroy', 'UserController@destroy')->name('admin/user/destroy');
   // CSVダウンロード
   Route::post('/api/admin/user/download','UserController@download')->name('admin/user/download');
+  // CSVアップロード
+  Route::post('/api/admin/user/upload', 'UserController@upload')->name('admin/user/upload');
   });
 
 // Other

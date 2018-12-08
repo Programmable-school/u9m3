@@ -3,17 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonRequest;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 use App\User;
 use Validator;
 use App\Facades\Csv;
+use App\Http\Response\UploadCsvFile;
 
 class UserController extends Controller
 {
   public function index()
   {
-    Log::Debug(__CLASS__.':'.__FUNCTION__.' index ');
+    Log::Debug(__CLASS__.':'.__FUNCTION__);
 
     $users = User::all();
     return ['users' => $users];
@@ -21,19 +24,95 @@ class UserController extends Controller
 
   public function download(Request $request)
   {
-    Log::Debug(__CLASS__.':'.__FUNCTION__);
+    Log::Debug(__CLASS__.':'.__FUNCTION__, $request->all());
 
     $csv_data = User::get(['loginid', 'name', 'role'])->toArray();
     $csv_header = ['loginid', 'name', 'role'];
     return Csv::download($csv_data, $csv_header, 'test.csv');
   }
 
+  public function upload(UploadCsvFile $request)
+  {
+    Log::Debug(__CLASS__.':'.__FUNCTION__, $request->all());
+
+    $file = $request->file('csvfile');
+    if ($file->getClientOriginalExtension() != 'csv') {
+      Log::Debug(__CLASS__.':'.__FUNCTION__.' File Name: '.$file ->getClientOriginalExtension());
+      Log::Debug(__CLASS__.':'.__FUNCTION__.' File Extension: '.$file->getClientOriginalExtention());
+      Log::Debug(__CLASS__.':'.__FUNCTION__.' ClientMimeType: '.$file->getClientMimeType());
+      Log::Debug(__CLASS__.':'.__FUNCTION__.' MineType: '.$file->getMimeType());
+
+      return new JsonResponse(['error' => [ 'csvfile' => 'CSVファイルを指定してください']], 422);
+    }
+
+    // csv をパース
+    try {
+      $rows = Csv::parse($file);
+    } catch (\Exception $e) {
+      Log::Debug(__CLASS__.':'.__FUNCTION__.' Parse Exception : '.$e -> getMessage());
+      return new JsonResponse(['errors'=> [
+        'csvfile' => 'CSVファイルの読み込みエラーが発生しました',
+        'exception' => $e ->getMessage()
+      ]]
+      , 422);
+    }
+
+    // 1行ずつ処理
+    $ret = array();
+    foreach ($rows as $line => $value) {
+
+      // 行データに対してのばりデート（必須・内容の確認）
+      $validator->$this->validator($value);
+      
+      // データに問題があればエラーを記録 => 処理は継続
+      if ($validator->fails()) {
+        foreach ($validator->errors()->all() as $message) {
+          Log::Debug(__CLASS__.':'.__FUNCTION__.' ERROR line('.$line.') '.$message);
+          $ret['errors'][] = ['line' => $line, 'message' => $message];
+        }
+        continue;
+      }
+
+      // CSVに問題がなければ 更新 or 挿入
+      $user = User::where('loginig', $value['loginid'])->first();
+
+      // 存在したら、更新
+      if ($user) {
+        Log::Debug(__CLASS__.':'.__FUNCTION__.' UPDATE line('.$line.') '.$value['name']);
+        $user->fill($value)->save();
+        $user['updata'][] = ['line' => $line, 'message' =>$value['name']];
+      }
+
+      // DB未登録なら新規登録
+      else {
+        Log::Debug(__CLASS__.':'.__FUNCTION__.' INSERT line('.$line.') '.$vale['name']);
+        $value['password'] = Hash::make($value['loginid']); //とりあえず初期パスワードは loginIDと同じにしておく
+        User::create($value);
+        $ret['insert'][] = ['line' => $line, 'message' => $value['name']];
+      }
+    } //i行ずつ処理
+
+    // 結果を戻す
+    return ['import' => $ret];
+
+  }
+
   public function store(Request $request)
   {
-    Log::Debug(__CLASS__.':'.__FUNCTION__.' store ');
+    Log::Debug(__CLASS__.':'.__FUNCTION__, $request->all());
 
     // 入力項目チェック（必須やら文字数やら）
-    $data = $this->validator($request->all());
+    $validator = $this->validator($request->all());
+
+    if ($validator->fails()) {
+      $validator->validate();
+    }
+
+    $data = $validator->valid();
+
+    if (array_key_exists('pass', $data) && $data['pass'] != '') {
+      $data['password'] = Hash::make($data['pass']);
+    }
 
     // ユーザ情報ＤＢ保存
     return $this->storeUser($data);
@@ -42,7 +121,7 @@ class UserController extends Controller
 
   public function destroy(Request $request)
   {
-    Log::Debug(__CLASS__.':'.__FUNCTION__.' destroy :'. print_r($request->all(),true));
+    Log::Debug(__CLASS__.':'.__FUNCTION__, $request->all());
 
     // 入力項目チェック（必須やら文字数やら）
     $data = $request->all();
@@ -79,7 +158,7 @@ class UserController extends Controller
         $user->fill($data)->save();
       }
 
-      // 該当者データあり、更新要求以外ならエラーj
+      // 該当者データあり、更新要求以外ならエラー
       else {
         return response()->json(['message' => 'User Exists'], 423);
       }
@@ -140,19 +219,21 @@ class UserController extends Controller
 
       // パスワード：
       'pass' => [
-        'nullable',  // 空でもＯＫ
+        'nullable',  // 空の場合は LoginIDに！
         'min:4',  // 最低４文字
         'max:128',  // 最長128文字（なんとなく）
         'regex:/\A(?=.*?[a-zA-Z])(?=.*?\d)(?=.*?['.$KIGO.'])[a-zA-Z\d'.$KIGO.']+\z/',
         // 必ず英小文字(a-z)or英大文字(A-Z)、数字(\d)、記号($KIGO)を１文字含む(\A)こと
       ],
-    ])->validate();
 
-    // パスワードが設定されていたらハッシュ化
-    if ($data['pass'] != ''){
-      $data['password'] = Hash::make($data['pass']);
-    }
+      // 権限:
+      'role' => [
+        'nullable',
+        'numeric',
+        Rule::in([5,10]),
+      ],
 
-    return $data;
+    ]);
+    return $validator;
   }
 }
