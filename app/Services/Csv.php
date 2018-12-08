@@ -5,6 +5,10 @@ namespace App\Services;
 use Illuminate\Support\Facades\Log;
 use Request;
 
+use Goodby\CSV\Import\Standard\Lexer;
+use Goodby\CSV\Import\Standard\Interpreter;
+use Goodby\CSV\Import\Standard\LexerConfig;
+
 class Csv
 {
     /**
@@ -42,13 +46,13 @@ class Csv
      */
     public function parse($file)
     {
-        $config = new LexerConig();
-        $interpreter = new Interpriter();
+        $config = new LexerConfig();
+        $interpreter = new Interpreter();
         $lexer = new Lexer($config);
 
         // CharsetをUTF-8に変換
         $config->setToCharset('UTF-8');
-        $config->setFormCharset('sjis-win');
+        $config->setFromCharset('sjis-win');
 
         // csv データをパース
         $row = array();
