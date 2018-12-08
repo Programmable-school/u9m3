@@ -121,7 +121,7 @@ class UserController extends Controller
 
   public function destroy(Request $request)
   {
-    Log::Debug(__CLASS__.':'.__FUNCTION__.' destroy :'. print_r($request->all(),true));
+    Log::Debug(__CLASS__.':'.__FUNCTION__, $request->all());
 
     // 入力項目チェック（必須やら文字数やら）
     $data = $request->all();
@@ -158,7 +158,7 @@ class UserController extends Controller
         $user->fill($data)->save();
       }
 
-      // 該当者データあり、更新要求以外ならエラーj
+      // 該当者データあり、更新要求以外ならエラー
       else {
         return response()->json(['message' => 'User Exists'], 423);
       }
