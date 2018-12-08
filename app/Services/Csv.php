@@ -36,4 +36,48 @@ class Csv
             array('Content-Type' => 'application/octet-stream')
         );
     }
+
+    /**
+     * CSVアップロード(読み取り)
+     */
+    public function parse($file)
+    {
+        $config = new LexerConig();
+        $interpreter = new Interpriter();
+        $lexer = new Lexer($config);
+
+        // CharsetをUTF-8に変換
+        $config->setToCharset('UTF-8');
+        $config->setFormCharset('sjis-win');
+
+        // csv データをパース
+        $row = array();
+        try {
+            $interpreter->addObserver(function(array $row) use (&$rows) {
+                $rows[] = $row;
+            });
+            $lexer->parse($file, $interpreter);
+
+        } catch (\Exception $e) {
+            throw $e;
+        }
+
+        // 1つずつ処理
+        $data = array();
+        foreach($rows as $key => $value) {
+
+            if($key == 0) {
+                $header = $value;
+                continue;
+            }
+
+            // 配列か - 2行目以降はヘッダーに沿って配列に
+            foreach ($value as $k => $v) {
+                $data[$key][$header[$k]] = $v;
+            }
+        }
+        // CSV を配列で戻す
+        return $data;
+    }
+
 }
