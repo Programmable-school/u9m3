@@ -16,7 +16,7 @@ class UserController extends Controller
 {
   public function index()
   {
-    Log::Debug(__CLASS__.':'.__FUNCTION__.' index ');
+    Log::Debug(__CLASS__.':'.__FUNCTION__);
 
     $users = User::all();
     return ['users' => $users];
@@ -24,7 +24,7 @@ class UserController extends Controller
 
   public function download(Request $request)
   {
-    Log::Debug(__CLASS__.':'.__FUNCTION__);
+    Log::Debug(__CLASS__.':'.__FUNCTION__, $request->all());
 
     $csv_data = User::get(['loginid', 'name', 'role'])->toArray();
     $csv_header = ['loginid', 'name', 'role'];
@@ -99,10 +99,20 @@ class UserController extends Controller
 
   public function store(Request $request)
   {
-    Log::Debug(__CLASS__.':'.__FUNCTION__.' store ');
+    Log::Debug(__CLASS__.':'.__FUNCTION__, $request->all());
 
     // 入力項目チェック（必須やら文字数やら）
-    $data = $this->validator($request->all());
+    $validator = $this->validator($request->all());
+
+    if ($validator->fails()) {
+      $validator->validate();
+    }
+
+    $data = $validator->valid();
+
+    if (array_key_exists('pass', $data) && $data['pass'] != '') {
+      $data['password'] = Hash::make($data['pass']);
+    }
 
     // ユーザ情報ＤＢ保存
     return $this->storeUser($data);
@@ -209,19 +219,21 @@ class UserController extends Controller
 
       // パスワード：
       'pass' => [
-        'nullable',  // 空でもＯＫ
+        'nullable',  // 空の場合は LoginIDに！
         'min:4',  // 最低４文字
         'max:128',  // 最長128文字（なんとなく）
         'regex:/\A(?=.*?[a-zA-Z])(?=.*?\d)(?=.*?['.$KIGO.'])[a-zA-Z\d'.$KIGO.']+\z/',
         // 必ず英小文字(a-z)or英大文字(A-Z)、数字(\d)、記号($KIGO)を１文字含む(\A)こと
       ],
-    ])->validate();
 
-    // パスワードが設定されていたらハッシュ化
-    if ($data['pass'] != ''){
-      $data['password'] = Hash::make($data['pass']);
-    }
+      // 権限:
+      'role' => [
+        'nullable',
+        'numeric',
+        Rule::in([5,10]),
+      ],
 
-    return $data;
+    ]);
+    return $validator;
   }
 }
