@@ -12,7 +12,7 @@
                         Name: {{ name }}<br>
                         Role: {{ role }}<br>
                       </div>
-                      <button v-on:click="axiosLogout">logout</button>
+                      <v-btn v-on:click="axiosLogout">logout</v-btn>
                     </div>
                 </div>
             </div>
@@ -21,7 +21,7 @@
 </template>
 
 <style scoped>
-.test {
+.roledetail {
   color: red;
   font-size: 4vm;
 }

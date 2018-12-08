@@ -119,7 +119,7 @@
         // USER CREATE
         if (this.type == 'C') {
           this.title = "新規追加"
-          this.titlecolor = 'primary',
+          this.titlecolor = 'yellow',
           this.placeholder_password = "パスワードを指定してください（未指定の場合はログインＩＤを設定）"
         }
         // USER UPDATE
