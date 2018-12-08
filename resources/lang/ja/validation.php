@@ -132,6 +132,17 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'pass' => [
+            'regex' => '必ず英文字と数字、記号を1文字ずつ含みこと',
+        ],
+        'rule' => [
+            'in' => ':attributeは 5 か 10 を指定してください',
+        ],
+        'csvfile' => [
+            'required' => 'ファイルを洗濯してください',
+            'file' => 'ファイルのアップロードに失敗しました',
+            'mimetypes' => 'ファイル形式が不正です(CSVファイルを洗濯してください)',
+        ],
     ],
 
     /*
