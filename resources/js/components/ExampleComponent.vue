@@ -14,6 +14,19 @@
                       </div>
                       <v-btn v-on:click="axiosLogout">logout</v-btn>
                     </div>
+
+                    <v-card>
+                      <div class="text-xs-center">
+                      <v-btn round large dark color="indigo">
+                        <v-icon dark>出勤</v-icon>
+                      </v-btn>
+
+                      <v-btn round large dark color="pink">
+                        <v-icon dark>退勤</v-icon>
+                      </v-btn>
+                      
+                      </div>
+                    </v-card>
                 </div>
             </div>
         </div>

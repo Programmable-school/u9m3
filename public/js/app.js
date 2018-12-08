@@ -90592,6 +90592,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -90636,34 +90649,66 @@ var render = function() {
   return _c("div", { staticClass: "container" }, [
     _c("div", { staticClass: "row justify-content-center" }, [
       _c("div", { staticClass: "col-md-8" }, [
-        _c("div", { staticClass: "card card-default" }, [
-          _c("div", { staticClass: "card-header" }, [
-            _vm._v("Example Component")
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "card-body" },
-            [
-              _vm._v(
-                "\n                  I'm an example compopnent\n                  "
-              ),
-              _c("div", { staticClass: "roledetail" }, [
-                _vm._v("\n                    ID: " + _vm._s(_vm.id)),
-                _c("br"),
-                _vm._v("\n                    Name: " + _vm._s(_vm.name)),
-                _c("br"),
-                _vm._v("\n                    Role: " + _vm._s(_vm.role)),
-                _c("br")
-              ]),
-              _vm._v(" "),
-              _c("v-btn", { on: { click: _vm.axiosLogout } }, [
-                _vm._v("logout")
-              ])
-            ],
-            1
-          )
-        ])
+        _c(
+          "div",
+          { staticClass: "card card-default" },
+          [
+            _c("div", { staticClass: "card-header" }, [
+              _vm._v("Example Component")
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "card-body" },
+              [
+                _vm._v(
+                  "\n                  I'm an example compopnent\n                  "
+                ),
+                _c("div", { staticClass: "roledetail" }, [
+                  _vm._v("\n                    ID: " + _vm._s(_vm.id)),
+                  _c("br"),
+                  _vm._v("\n                    Name: " + _vm._s(_vm.name)),
+                  _c("br"),
+                  _vm._v("\n                    Role: " + _vm._s(_vm.role)),
+                  _c("br")
+                ]),
+                _vm._v(" "),
+                _c("v-btn", { on: { click: _vm.axiosLogout } }, [
+                  _vm._v("logout")
+                ])
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c("v-card", [
+              _c(
+                "div",
+                { staticClass: "text-xs-center" },
+                [
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { round: "", large: "", dark: "", color: "indigo" }
+                    },
+                    [_c("v-icon", { attrs: { dark: "" } }, [_vm._v("出勤")])],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { round: "", large: "", dark: "", color: "pink" }
+                    },
+                    [_c("v-icon", { attrs: { dark: "" } }, [_vm._v("退勤")])],
+                    1
+                  )
+                ],
+                1
+              )
+            ])
+          ],
+          1
+        )
       ])
     ])
   ])
