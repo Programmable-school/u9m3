@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonRequest;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 use App\User;
 use Validator;
 use App\Facades\Csv;
+use App\Http\Response\UploadCsvFile;
 
 class UserController extends Controller
 {
@@ -26,6 +29,27 @@ class UserController extends Controller
     $csv_data = User::get(['loginid', 'name', 'role'])->toArray();
     $csv_header = ['loginid', 'name', 'role'];
     return Csv::download($csv_data, $csv_header, 'test.csv');
+  }
+
+  public function upload(UploadCsvFile $request)
+  {
+    Log::Debug(__CLASS__.':'.__FUNCTION__, $request->all());
+
+    $file = $request->file('csvfile');
+    if ($file->getClientOriginalExtension() != 'csv') {
+      Log::Debug(__CLASS__.':'.__FUNCTION__.' File Name: '.$file ->getClientOriginalExtension());
+      Log::Debug(__CLASS__.':'.__FUNCTION__.' File Extension: '.$file->getClientOriginalExtention());
+      Log::Debug(__CLASS__.':'.__FUNCTION__.' ClientMimeType: '.$file->getClientMimeType());
+      Log::Debug(__CLASS__.':'.__FUNCTION__.' MineType: '.$file->getMimeType());
+
+      return new JsonResponse(['error' => [ 'csvfile' => 'CSVファイルを指定してください']], 422);
+    }
+
+    // csv をパース
+    try {
+      $rows;
+    }
+
   }
 
   public function store(Request $request)
