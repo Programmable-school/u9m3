@@ -49,7 +49,7 @@ class UserController extends Controller
     try {
       $rows = Csv::parse($file);
     } catch (\Exception $e) {
-      Log::Debug(__CLASS__.':'.__FUNCTION__.' Parse Exception : '.$e -> getMessage());
+      Log::Debug(__CLASS__.':'.__FUNCTION__.' Parre Exception : '.$e -> getMessage());
       return new JsonResponse(['errors'=> [
         'csvfile' => 'CSVファイルの読み込みエラーが発生しました',
         'exception' => $e ->getMessage()

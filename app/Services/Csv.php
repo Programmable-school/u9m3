@@ -53,6 +53,7 @@ class Csv
         $config->setFromCharset('sjis-win');
 
         $interpreter = new Interpreter();
+        $interpreter->unstrict();
         $lexer = new Lexer($config);
 
 
