@@ -49,8 +49,9 @@ class Csv
         $config = new LexerConfig();
 
         // CharsetをUTF-8に変換
+        $config->setFromCharset('SJIS-win');
         $config->setToCharset('UTF-8');
-        $config->setFromCharset('sjis-win');
+        
 
         $interpreter = new Interpreter();
         $interpreter->unstrict();
