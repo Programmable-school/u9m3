@@ -62,7 +62,7 @@ class UserController extends Controller
     foreach ($rows as $line => $value) {
 
       // 行データに対してのばりデート（必須・内容の確認）
-      $validator->$this->validator($value);
+      $validator = $this->validator($value);
       
       // データに問題があればエラーを記録 => 処理は継続
       if ($validator->fails()) {
@@ -74,18 +74,18 @@ class UserController extends Controller
       }
 
       // CSVに問題がなければ 更新 or 挿入
-      $user = User::where('loginig', $value['loginid'])->first();
+      $user = User::where('loginid', $value['loginid'])->first();
 
       // 存在したら、更新
       if ($user) {
         Log::Debug(__CLASS__.':'.__FUNCTION__.' UPDATE line('.$line.') '.$value['name']);
         $user->fill($value)->save();
-        $user['updata'][] = ['line' => $line, 'message' =>$value['name']];
+        $user['update'][] = ['line' => $line, 'message' => $value['name']];
       }
 
       // DB未登録なら新規登録
       else {
-        Log::Debug(__CLASS__.':'.__FUNCTION__.' INSERT line('.$line.') '.$vale['name']);
+        Log::Debug(__CLASS__.':'.__FUNCTION__.' INSERT line('.$line.') '.$value['name']);
         $value['password'] = Hash::make($value['loginid']); //とりあえず初期パスワードは loginIDと同じにしておく
         User::create($value);
         $ret['insert'][] = ['line' => $line, 'message' => $value['name']];
