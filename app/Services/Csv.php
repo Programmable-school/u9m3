@@ -47,15 +47,18 @@ class Csv
     public function parse($file)
     {
         $config = new LexerConfig();
-        $interpreter = new Interpreter();
-        $lexer = new Lexer($config);
 
         // CharsetをUTF-8に変換
         $config->setToCharset('UTF-8');
         $config->setFromCharset('sjis-win');
 
+        $interpreter = new Interpreter();
+        $lexer = new Lexer($config);
+
+
+
         // csv データをパース
-        $row = array();
+        $rows = array();
         try {
             $interpreter->addObserver(function(array $row) use (&$rows) {
                 $rows[] = $row;
