@@ -90786,10 +90786,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   mounted: function mounted() {
     console.log("AdminComponent mounted.");
     if (true) {
-      this.footer = "フッター文字列を指定";
+      this.footer = "がたぽんまつもとの共同作成";
     }
     if (true) {
-      this.title = "タイトル指定";
+      this.title = "社員管理をしよう";
     }
   },
 
@@ -91402,7 +91402,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     };
   },
   created: function created() {
-    if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"フッター文字列を指定","MIX_TITLE":"タイトル指定","NODE_ENV":"development"}).MIX_DEBUG) console.log('User Component created.');
+    if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log('User Component created.');
     this.initialize();
   },
 
@@ -91411,19 +91411,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.getUsers();
     },
     reload: function reload() {
-      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"フッター文字列を指定","MIX_TITLE":"タイトル指定","NODE_ENV":"development"}).MIX_DEBUG) console.log('User Component reload');
+      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log('User Component reload');
       this.getUsers();
     },
     setsearch: function setsearch(id) {
-      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"フッター文字列を指定","MIX_TITLE":"タイトル指定","NODE_ENV":"development"}).MIX_DEBUG) console.log('User Component set Search');
+      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log('User Component set Search');
       this.search = id;
     },
     getUsers: function getUsers() {
-      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"フッター文字列を指定","MIX_TITLE":"タイトル指定","NODE_ENV":"development"}).MIX_DEBUG) console.log('User Component getUsers');
+      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log('User Component getUsers');
       this.loading = true;
       axios.post('/api/admin/user').then(function (response) {
         this.loading = false;
-        if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"フッター文字列を指定","MIX_TITLE":"タイトル指定","NODE_ENV":"development"}).MIX_DEBUG) console.log(response);
+        if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log(response);
         if (response.data.users) {
           this.tabledata = response.data.users;
           this.setRole();
@@ -91449,7 +91449,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
     },
     dialogOpen: function dialogOpen(item, flg) {
-      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"フッター文字列を指定","MIX_TITLE":"タイトル指定","NODE_ENV":"development"}).MIX_DEBUG) console.log('User Component dialog open');
+      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log('User Component dialog open');
       this.$refs.userDialog.open(item, flg || false);
     }
   }
@@ -91593,7 +91593,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     };
   },
   created: function created() {
-    if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"フッター文字列を指定","MIX_TITLE":"タイトル指定","NODE_ENV":"development"}).MIX_DEBUG) console.log('User Dialog created.');
+    if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log('User Dialog created.');
   },
 
   methods: {
@@ -91612,11 +91612,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       };
     },
     close: function close() {
-      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"フッター文字列を指定","MIX_TITLE":"タイトル指定","NODE_ENV":"development"}).MIX_DEBUG) console.log("User Dialog func close");
+      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log("User Dialog func close");
       this.dialog = false;
     },
     save: function save() {
-      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"フッター文字列を指定","MIX_TITLE":"タイトル指定","NODE_ENV":"development"}).MIX_DEBUG) console.log("User Dialog func save");
+      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log("User Dialog func save");
       // 変更があった時だけ通信
       if (JSON.stringify(this.orig).replace(/[\s|　]+/g, '') !== JSON.stringify(this.items).replace(/[\s|　]+/g, '')) {
         this.store();
@@ -91627,7 +91627,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     },
     open: function open(item, flg) {
-      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"フッター文字列を指定","MIX_TITLE":"タイトル指定","NODE_ENV":"development"}).MIX_DEBUG) console.log("User Dialog func open");
+      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log("User Dialog func open");
       // INIT VAR
       this.clearVar();
       // SET TYPE
@@ -91663,7 +91663,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
     },
     store: function store() {
-      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"フッター文字列を指定","MIX_TITLE":"タイトル指定","NODE_ENV":"development"}).MIX_DEBUG) console.log("User Dialog func store");
+      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log("User Dialog func store");
       var params = new URLSearchParams();
       params.append('loginid', this.items.loginid);
       params.append('name', this.items.name);
@@ -91676,7 +91676,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         alert(this.items.name + "を保存しました");
         this.close(); // 保存が正常終了したら閉じる
       }.bind(this)).catch(function (error) {
-        if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"フッター文字列を指定","MIX_TITLE":"タイトル指定","NODE_ENV":"development"}).MIX_DEBUG) console.log("User Dialog store error");
+        if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log("User Dialog store error");
         console.log(error);
         if (error.response && [401, 419].includes(error.response.status)) {
           this.$emit('axios-logout');
@@ -91699,7 +91699,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }.bind(this));
     },
     destroy: function destroy() {
-      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"フッター文字列を指定","MIX_TITLE":"タイトル指定","NODE_ENV":"development"}).MIX_DEBUG) console.log("User Dialog func destroy");
+      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log("User Dialog func destroy");
       var params = new URLSearchParams();
       params.append('loginid', this.items.loginid);
       axios.post('/api/admin/user/destroy', params).then(function (response) {
@@ -91707,7 +91707,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         alert(this.items.name + "\n" + "を削除しました");
         this.close(); // 保存が正常終了したら閉じる
       }.bind(this)).catch(function (error) {
-        if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"フッター文字列を指定","MIX_TITLE":"タイトル指定","NODE_ENV":"development"}).MIX_DEBUG) console.log("User Dialog destroy error");
+        if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log("User Dialog destroy error");
         console.log(error);
         if (error.response && [401, 419].includes(error.response.status)) {
           this.$emit('axios-logout');
@@ -92049,12 +92049,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     };
   },
   created: function created() {
-    if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"フッター文字列を指定","MIX_TITLE":"タイトル指定","NODE_ENV":"development"}).MIX_DEBUG) console.log('CSV Download Btn created.');
+    if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log('CSV Download Btn created.');
   },
 
   methods: {
     csvdownload: function csvdownload(filename, url) {
-      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"フッター文字列を指定","MIX_TITLE":"タイトル指定","NODE_ENV":"development"}).MIX_DEBUG) console.log("CSV Download func csvdownload");
+      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log("CSV Download func csvdownload");
       var config = {
         responseType: 'blob',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
@@ -92064,7 +92064,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.csvdownloading = false;
         this.saveCsvFile(response);
       }.bind(this)).catch(function (error) {
-        if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"フッター文字列を指定","MIX_TITLE":"タイトル指定","NODE_ENV":"development"}).MIX_DEBUG) console.log("CSV Download csvdownload error");
+        if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log("CSV Download csvdownload error");
         this.csvdownloading = false;
         console.log(error);
         if (error.response && [401, 419].includes(error.response.status)) {
@@ -92260,7 +92260,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     };
   },
   created: function created() {
-    if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"フッター文字列を指定","MIX_TITLE":"タイトル指定","NODE_ENV":"development"}).MIX_DEBUG) console.log('CSV Upload Btn created.');
+    if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log('CSV Upload Btn created.');
   },
 
   methods: {
@@ -92274,7 +92274,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"フッター文字列を指定","MIX_TITLE":"タイトル指定","NODE_ENV":"development"}).MIX_DEBUG) console.log('CSV Upload onFilePicked');
+                if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log('CSV Upload onFilePicked');
                 files = e.target.files;
 
                 if (!(files[0] == undefined)) {
@@ -92293,7 +92293,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                   break;
                 }
 
-                if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"フッター文字列を指定","MIX_TITLE":"タイトル指定","NODE_ENV":"development"}).MIX_DEBUG) console.log("FILE:" + files[i].name + " (" + files[i].size + " byte)");
+                if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log("FILE:" + files[i].name + " (" + files[i].size + " byte)");
                 _context.next = 9;
                 return this.csvupload(files[i]);
 
@@ -92320,7 +92320,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
       var _this = this;
 
       return new Promise(function (resolve, reject) {
-        if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"フッター文字列を指定","MIX_TITLE":"タイトル指定","NODE_ENV":"development"}).MIX_DEBUG) console.log('CSV Upload csv upload');
+        if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log('CSV Upload csv upload');
         var config = {
           headers: { 'Content-Type': 'multipart/form-data' }
           // 送信ファイル設定
@@ -92336,15 +92336,15 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         // アップロード 正常
         .then(function (response) {
           this.csvuploading = false;
-          if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"フッター文字列を指定","MIX_TITLE":"タイトル指定","NODE_ENV":"development"}).MIX_DEBUG) console.log("CSV Upload success");
-          if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"フッター文字列を指定","MIX_TITLE":"タイトル指定","NODE_ENV":"development"}).MIX_DEBUG) console.log(response.data);
+          if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log("CSV Upload success");
+          if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log(response.data);
           this.resultDialog(file, response.data.import);
         }.bind(_this))
         // アップロード 異常
         .catch(function (error) {
           this.csvuploading = false;
-          if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"フッター文字列を指定","MIX_TITLE":"タイトル指定","NODE_ENV":"development"}).MIX_DEBUG) console.log("CSV Upload error");
-          if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"フッター文字列を指定","MIX_TITLE":"タイトル指定","NODE_ENV":"development"}).MIX_DEBUG) console.log(error.response);
+          if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log("CSV Upload error");
+          if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log(error.response);
           if (error.response && [401, 419].includes(error.response.status)) {
             this.$emit('axios-logout');
           } else if (error.response && [422].includes(error.response.status)) {
@@ -93269,16 +93269,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     };
   },
   created: function created() {
-    if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"フッター文字列を指定","MIX_TITLE":"タイトル指定","NODE_ENV":"development"}).MIX_DEBUG) console.log('Csv Upload Dialog created.');
+    if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log('Csv Upload Dialog created.');
   },
 
   methods: {
     close: function close() {
-      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"フッター文字列を指定","MIX_TITLE":"タイトル指定","NODE_ENV":"development"}).MIX_DEBUG) console.log("Csv Upload Dialog func close");
+      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log("Csv Upload Dialog func close");
       this.dialog = false;
     },
     open: function open(file, data) {
-      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"フッター文字列を指定","MIX_TITLE":"タイトル指定","NODE_ENV":"development"}).MIX_DEBUG) console.log("Csv Upload Dialog func open");
+      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log("Csv Upload Dialog func open");
       this.dialog = true;
       this.filename = file.name;
       this.result = '';
