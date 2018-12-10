@@ -38,8 +38,7 @@ class UserController extends Controller
     {
         Log::Debug(__CLASS__.':'.__FUNCTION__, $request->all());
 
-        // 拡張子チェックがうまく動かないことがあるので独自で実施
-        // -- https://api.symfony.com/3.0/Symfony/Component/HttpFoundation/File/UploadedFile.html
+        
         $file = $request -> file('csvfile');
         if ($file ->getClientOriginalExtension() != 'csv') {
             Log::Debug(__CLASS__.':'.__FUNCTION__.' File Name: '. $file ->getClientOriginalName());
