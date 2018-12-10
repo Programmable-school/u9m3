@@ -57,12 +57,15 @@ class Csv
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         $config->setToCharset("UTF-8");
         $config->setFromCharset("sjis-win");
 
         // CSVデータをパース
         $rows = array();
 =======
+=======
+>>>>>>> parent of c97fd0f... Merge pull request #20 from Programmable-school/STEP8修正
 =======
 >>>>>>> parent of c97fd0f... Merge pull request #20 from Programmable-school/STEP8修正
 =======
@@ -74,6 +77,9 @@ class Csv
         $row = array();
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of c97fd0f... Merge pull request #20 from Programmable-school/STEP8修正
+=======
 >>>>>>> parent of c97fd0f... Merge pull request #20 from Programmable-school/STEP8修正
 =======
 >>>>>>> parent of c97fd0f... Merge pull request #20 from Programmable-school/STEP8修正
