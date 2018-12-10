@@ -12,8 +12,10 @@
 */
 
 Route::get('/', function () {
-  return view('home');
+    return view('home');
 })->middleware('auth');
+
+Route::get('/pdf', 'DocumentController@downloadPdf')->name('pdf');
 
 // Authentication Routes...
 Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
@@ -27,11 +29,11 @@ Route::group( ['middleware' => ['auth', 'can:admin']], function() {
   Route::post('/api/admin/user', 'UserController@index')->name('admin/user');
   Route::post('/api/admin/user/store', 'UserController@store')->name('admin/user/store');
   Route::post('/api/admin/user/destroy', 'UserController@destroy')->name('admin/user/destroy');
-  // CSVダウンロード
-  Route::post('/api/admin/user/download','UserController@download')->name('admin/user/download');
-  });
+  Route::post('/api/admin/user/download', 'UserController@download')->name('admin/user/download');
+  Route::post('/api/admin/user/upload', 'UserController@upload')->name('admin/user/upload');
+});
 
 // Other
 Route::get('/{any}', function () {
-return view('home');
+  return view('home');
 })->middleware('auth')->where('any', '.*');

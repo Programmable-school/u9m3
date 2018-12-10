@@ -24,11 +24,14 @@
 
 <script>
   import upload_dialog from './CsvUploadDialog.vue'
+
   export default {
     name: 'CSVUpload',
+
     components: {
       'upload-dialog': upload_dialog,
     },
+
     props: {
       color: String,
       icon: String,
@@ -37,13 +40,16 @@
       multiple: String,
       updata: Object,
     },
+
     data: () => ({
       csvuploading: false,
       csvupfile: null,
     }),
+
     created() {
       if (process.env.MIX_DEBUG) console.log('CSV Upload Btn created.')
     },
+
     methods: {
       // アップロードボタンを押すと "<input type=file"　を実行してファイル選択ダイアログを開く
       // ファイル選択ダイアログで何らかの動き(change)があると関数(onFilePicked)を呼ぶ
@@ -52,28 +58,34 @@
         if (process.env.MIX_DEBUG) console.log('CSV Upload onFilePicked')
         const files = e.target.files
         if(files[0] == undefined) return  // ファイル未選択は何もしない
+
         // ファイルを１つずつ送信 - 非同期処理
         for (var i=0 ; i<files.length ; i++) {
           if (process.env.MIX_DEBUG) console.log("FILE:" + files[i].name + " (" + files[i].size + " byte)")
           await this.csvupload(files[i])
         }
       },
+
       csvupload(file) {
         return new Promise((resolve, reject) => {
           if (process.env.MIX_DEBUG) console.log('CSV Upload csv upload')
           var config = {
             headers: {'Content-Type': 'multipart/form-data'}
           }
+
           // 送信ファイル設定
           var formData = new FormData()
           formData.append('csvfile', file)
+
           // 追加送信パラメータ設定（指定があれば）
           if (this.updata) {
             formData.append(this.updata.key, this.updata.value)
           }
+
           // アップロード実行
           this.csvuploading = true
           axios.post(this.url, formData, config)
+
           // アップロード 正常
           .then( function (response) {
             this.csvuploading = false
@@ -81,6 +93,7 @@
             if (process.env.MIX_DEBUG) console.log(response.data)
             this.resultDialog(file, response.data.import)
           }.bind(this))
+
           // アップロード 異常
           .catch(function (error) {
             this.csvuploading = false
@@ -99,9 +112,11 @@
               }
             }
           }.bind(this))
+
         return resolve(file)
         })
       },
+
       resultDialog(file, data) {
         var res = []
         // ERROR
@@ -109,21 +124,26 @@
         if (data.errors) {
           res.error = this.getResult(data.errors, 'データエラー: ', ' 箇所')
         }
+
         // UPDATE
         res.result = ''
         if (data.update) {
           res.result = this.getResult(data.update, '更新 : ', ' レコード')
           res.result += '\n'
         }
+
         // INSERT
         if (data.insert) {
           res.result += this.getResult(data.insert, '新規 : ', ' レコード')
         }
+
         // ダイアログを開く
         this.$refs.UploadDialog.open(file, res)
+
         //  一覧を再読み込み
         this.$emit('reload')
       },
+
       getResult(data, comment1, comment2) {
         var res = comment1 + data.length + comment2 + '\n'
         for (var i=0; i<data.length; i++) {

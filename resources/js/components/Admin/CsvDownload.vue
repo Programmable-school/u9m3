@@ -13,6 +13,7 @@
 <script>
   export default {
     name: 'CSVDownload',
+
     props: {
       color: String,
       icon: String,
@@ -20,12 +21,15 @@
       url: String,
       filename: String,
     },
+
     data: () => ({
       csvdownloading: false,
     }),
+
     created() {
       if (process.env.MIX_DEBUG) console.log('CSV Download Btn created.')
     },
+
     methods: {
       csvdownload(filename, url) {
         if (process.env.MIX_DEBUG) console.log("CSV Download func csvdownload")
@@ -33,12 +37,15 @@
           responseType: 'blob',
           headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         }
+
         this.csvdownloading = true
         axios.post(this.url, config)
+
         .then( function (response) {
           this.csvdownloading = false
           this.saveCsvFile(response)
         }.bind(this))
+
         .catch(function (error) {
           if (process.env.MIX_DEBUG) console.log("CSV Download csvdownload error")
           this.csvdownloading = false
@@ -48,9 +55,11 @@
           }
         }.bind(this))
       },
+
       saveCsvFile(res) {
         // CSVデータ取得 - BOM 付与
         var blob = new Blob(['\ufeff' + res.data], { type: 'text/csv' })
+
         // ファイル名設定 - ファイル名には日時をつけて拡張子 csv を設定
         //                - ボタンの引数で指定された名前があれば尊重 
         //                - 指定なしならルーティングのページ名をつけておく
@@ -60,11 +69,13 @@
           filename = this.$route.meta.name
         }
         filename += '_' + moment(Date.now()).format("YYYYMMDD_HHmmss") + '.csv'
+
         // IE11 ( msSaveBlog が有効なら)
         if (window.navigator.msSaveBlob) {
           window.navigator.msSaveBlob(blob, filename)
           window.navigator.msSaveOrOpenBlob(blob, filename)
         }
+
         // IE11 以外なら( Chrome, Firefox, Android, etc...)
         else {
           const url = window.URL.createObjectURL(blob)

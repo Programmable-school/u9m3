@@ -91429,27 +91429,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'UserComponent',
+
   components: {
     'user-dialog': __WEBPACK_IMPORTED_MODULE_0__UserDialog_vue___default.a,
     'csv-download': __WEBPACK_IMPORTED_MODULE_1__CsvDownload_vue___default.a,
     'csv-upload': __WEBPACK_IMPORTED_MODULE_2__CsvUpload_vue___default.a
   },
+
   props: {},
+
   data: function data() {
     return {
       loading: false,
       search: '',
       pagination: { sortBy: 'name', descending: false },
+
       tabledata: [],
       headers: [{ align: 'center', sortable: false, text: 'No' }, { align: 'left', sortable: true, text: '社員ID', value: 'loginid' }, { align: 'left', sortable: true, text: '氏名', value: 'name' }, { align: 'center', sortable: true, text: '権限', value: 'role' }, { align: 'center', sortable: false, text: 'アクション' }]
     };
   },
+
   created: function created() {
     if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log('User Component created.');
     this.initialize();
   },
+
 
   methods: {
     initialize: function initialize() {
@@ -91608,7 +91615,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'UserDialog',
+
   props: {},
+
   data: function data() {
     return {
       dialog: false,
@@ -91616,6 +91625,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       titlecolor: 'primary',
       placeholder_password: '',
       type: '',
+
       items: {
         loginid: '',
         name: '',
@@ -91624,6 +91634,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       },
       orig: {},
       error: {},
+
       rules: {
         required: function required(value) {
           return !!value || 'Required.';
@@ -91637,9 +91648,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
     };
   },
+
   created: function created() {
     if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log('User Dialog created.');
   },
+
 
   methods: {
     clearVar: function clearVar() {
@@ -91662,10 +91675,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     save: function save() {
       if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log("User Dialog func save");
+
       // 変更があった時だけ通信
       if (JSON.stringify(this.orig).replace(/[\s|　]+/g, '') !== JSON.stringify(this.items).replace(/[\s|　]+/g, '')) {
         this.store();
       }
+
       // 変更がなければただ閉じる
       else {
           this.close();
@@ -91673,27 +91688,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     open: function open(item, flg) {
       if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log("User Dialog func open");
+
       // INIT VAR
       this.clearVar();
+
       // SET TYPE
       if (flg) this.type = 'D'; // DELETE
       else if (item) this.type = 'U'; // UPDATE
         else this.type = 'C'; // CREATE
+
       // USER CREATE
       if (this.type == 'C') {
         this.title = "新規追加";
-        this.titlecolor = 'yellow', this.placeholder_password = "パスワードを指定してください（未指定の場合はログインＩＤを設定）";
+        this.titlecolor = 'primary', this.placeholder_password = "パスワードを指定してください（未指定の場合はログインＩＤを設定）";
       }
+
       // USER UPDATE
       if (this.type == 'U') {
         this.title = "編集";
-        this.titlecolor = 'black', this.placeholder_password = "変更する場合はパスワードを指定してください（未指定の場合は変更しない）";
+        this.titlecolor = 'accent', this.placeholder_password = "変更する場合はパスワードを指定してください（未指定の場合は変更しない）";
       }
+
       // USER DELETE
       if (this.type == 'D') {
         this.title = "削除";
         this.titlecolor = 'error', this.placeholder_password = "";
       }
+
       // SET ITEM
       if (item) {
         if (item.loginid) this.items.loginid = item.loginid;
@@ -91715,7 +91736,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       params.append('pass', this.items.pass);
       params.append('role', this.items.role ? 5 : 10);
       params.append('type', this.type);
+
       this.clearError();
+
       axios.post('/api/admin/user/store', params).then(function (response) {
         this.$emit('reload');
         alert(this.items.name + "を保存しました");
@@ -91747,6 +91770,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log("User Dialog func destroy");
       var params = new URLSearchParams();
       params.append('loginid', this.items.loginid);
+
       axios.post('/api/admin/user/destroy', params).then(function (response) {
         this.$emit('reload');
         alert(this.items.name + "\n" + "を削除しました");
@@ -91853,7 +91877,7 @@ var render = function() {
                             staticClass: "pb-3",
                             attrs: {
                               label: "名前",
-                              placeholder: "氏名を入力してください.",
+                              placeholder: "氏名を入力してください",
                               "error-messages": _vm.error.name,
                               rules: [_vm.rules.required, _vm.rules.min2],
                               maxlength: "64",
@@ -92081,6 +92105,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'CSVDownload',
+
   props: {
     color: String,
     icon: String,
@@ -92088,14 +92113,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     url: String,
     filename: String
   },
+
   data: function data() {
     return {
       csvdownloading: false
     };
   },
+
   created: function created() {
     if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log('CSV Download Btn created.');
   },
+
 
   methods: {
     csvdownload: function csvdownload(filename, url) {
@@ -92104,6 +92132,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         responseType: 'blob',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
       };
+
       this.csvdownloading = true;
       axios.post(this.url, config).then(function (response) {
         this.csvdownloading = false;
@@ -92120,6 +92149,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     saveCsvFile: function saveCsvFile(res) {
       // CSVデータ取得 - BOM 付与
       var blob = new Blob(['\uFEFF' + res.data], { type: 'text/csv' });
+
       // ファイル名設定 - ファイル名には日時をつけて拡張子 csv を設定
       //                - ボタンの引数で指定された名前があれば尊重 
       //                - 指定なしならルーティングのページ名をつけておく
@@ -92129,11 +92159,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         filename = this.$route.meta.name;
       }
       filename += '_' + moment(Date.now()).format("YYYYMMDD_HHmmss") + '.csv';
+
       // IE11 ( msSaveBlog が有効なら)
       if (window.navigator.msSaveBlob) {
         window.navigator.msSaveBlob(blob, filename);
         window.navigator.msSaveOrOpenBlob(blob, filename);
       }
+
       // IE11 以外なら( Chrome, Firefox, Android, etc...)
       else {
           var url = window.URL.createObjectURL(blob);
@@ -92285,11 +92317,14 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'CSVUpload',
+
   components: {
     'upload-dialog': __WEBPACK_IMPORTED_MODULE_1__CsvUploadDialog_vue___default.a
   },
+
   props: {
     color: String,
     icon: String,
@@ -92298,15 +92333,18 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     multiple: String,
     updata: Object
   },
+
   data: function data() {
     return {
       csvuploading: false,
       csvupfile: null
     };
   },
+
   created: function created() {
     if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log('CSV Upload Btn created.');
   },
+
 
   methods: {
     // アップロードボタンを押すと "<input type=file"　を実行してファイル選択ダイアログを開く
@@ -92368,16 +92406,20 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log('CSV Upload csv upload');
         var config = {
           headers: { 'Content-Type': 'multipart/form-data' }
+
           // 送信ファイル設定
         };var formData = new FormData();
         formData.append('csvfile', file);
+
         // 追加送信パラメータ設定（指定があれば）
         if (_this.updata) {
           formData.append(_this.updata.key, _this.updata.value);
         }
+
         // アップロード実行
         _this.csvuploading = true;
         axios.post(_this.url, formData, config)
+
         // アップロード 正常
         .then(function (response) {
           this.csvuploading = false;
@@ -92385,6 +92427,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
           if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log(response.data);
           this.resultDialog(file, response.data.import);
         }.bind(_this))
+
         // アップロード 異常
         .catch(function (error) {
           this.csvuploading = false;
@@ -92402,6 +92445,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             }
           }
         }.bind(_this));
+
         return resolve(file);
       });
     },
@@ -92412,18 +92456,22 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
       if (data.errors) {
         res.error = this.getResult(data.errors, 'データエラー: ', ' 箇所');
       }
+
       // UPDATE
       res.result = '';
       if (data.update) {
         res.result = this.getResult(data.update, '更新 : ', ' レコード');
         res.result += '\n';
       }
+
       // INSERT
       if (data.insert) {
         res.result += this.getResult(data.insert, '新規 : ', ' レコード');
       }
+
       // ダイアログを開く
       this.$refs.UploadDialog.open(file, res);
+
       //  一覧を再読み込み
       this.$emit('reload');
     },
@@ -93300,11 +93348,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'CsvUploadDialog',
+
   props: {
     color: String,
     icon: String,
     title: String
   },
+
   data: function data() {
     return {
       dialog: false,
@@ -93313,9 +93363,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       filename: ''
     };
   },
+
   created: function created() {
     if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log('Csv Upload Dialog created.');
   },
+
 
   methods: {
     close: function close() {

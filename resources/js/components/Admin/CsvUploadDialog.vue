@@ -27,25 +27,30 @@
 <script>
   export default {
     name: 'CsvUploadDialog',
+
     props: {
       color: String,
       icon: String,
       title: String,
     },
+
     data: () => ({
       dialog: false,
       result: '',
       error: '',
       filename: '',
     }),
+
     created() {
       if (process.env.MIX_DEBUG) console.log('Csv Upload Dialog created.')
     },
+
     methods: {
       close() {
         if (process.env.MIX_DEBUG) console.log("Csv Upload Dialog func close")
         this.dialog = false
       },
+
       open(file, data) {
         if (process.env.MIX_DEBUG) console.log("Csv Upload Dialog func open")
         this.dialog = true
