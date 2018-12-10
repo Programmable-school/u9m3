@@ -50,67 +50,38 @@ class Csv
     {
         // Goodby CSVのconfig設定
         $config = new LexerConfig();
+        $config->setFromCharset('SJIS-win');
+        $config->setToCharset('UTF-8');
+
         $interpreter = new Interpreter();
+        $interpreter->unstrict();
         $lexer = new Lexer($config);
 
-        // CharsetをUTF-8に変換
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        $config->setToCharset("UTF-8");
-        $config->setFromCharset("sjis-win");
-
-        // CSVデータをパース
+        // csv　をパース
         $rows = array();
-=======
-=======
->>>>>>> parent of c97fd0f... Merge pull request #20 from Programmable-school/STEP8修正
-=======
->>>>>>> parent of c97fd0f... Merge pull request #20 from Programmable-school/STEP8修正
-=======
->>>>>>> parent of c97fd0f... Merge pull request #20 from Programmable-school/STEP8修正
-        $config->setToCharset('UTF-8');
-        $config->setFromCharset('sjis-win');
-
-        // csv データをパース
-        $row = array();
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> parent of c97fd0f... Merge pull request #20 from Programmable-school/STEP8修正
-=======
->>>>>>> parent of c97fd0f... Merge pull request #20 from Programmable-school/STEP8修正
-=======
->>>>>>> parent of c97fd0f... Merge pull request #20 from Programmable-school/STEP8修正
-=======
->>>>>>> parent of c97fd0f... Merge pull request #20 from Programmable-school/STEP8修正
         try {
             $interpreter->addObserver(function(array $row) use (&$rows) {
                 $rows[] = $row;
             });
             $lexer->parse($file, $interpreter);
+
         } catch (\Exception $e) {
             throw $e;
         }
 
-        // １行ずつ処理
+        // 1つずつ処理
         $data = array();
-        foreach ($rows as $key => $value) {
+        foreach($rows as $key => $value) {
 
-            // 最初の行はヘッダー
-            if($key == 0) {
+            if($key == 0 ) {
                 $header = $value;
                 continue;
             }
 
-            // 配列化 - ２行目以降はヘッダーに沿って配列に
             foreach ($value as $k => $v) {
                 $data[$key][$header[$k]] = $v;
             }
         }
-
-        // ＣＳＶを配列で戻す
         return $data;
     }
 }

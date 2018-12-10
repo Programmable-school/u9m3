@@ -22,7 +22,6 @@ class UserController extends Controller
         return ['users' => $users];
     }
 
-<<<<<<< HEAD
 
     public function download(Request $request)
     {
@@ -39,8 +38,7 @@ class UserController extends Controller
     {
         Log::Debug(__CLASS__.':'.__FUNCTION__, $request->all());
 
-        // 拡張子チェックがうまく動かないことがあるので独自で実施
-        // -- https://api.symfony.com/3.0/Symfony/Component/HttpFoundation/File/UploadedFile.html
+        
         $file = $request -> file('csvfile');
         if ($file ->getClientOriginalExtension() != 'csv') {
             Log::Debug(__CLASS__.':'.__FUNCTION__.' File Name: '. $file ->getClientOriginalName());
@@ -49,70 +47,6 @@ class UserController extends Controller
             Log::Debug(__CLASS__.':'.__FUNCTION__.' MimeType: '. $file ->getMimeType());
             return new JsonResponse(['errors' => [ 'csvfile' => 'CSVファイルを指定してください']], 422);
         }
-=======
-    // csv をパース
-    try {
-      $rows = Csv::parse($file);
-    } catch (\Exception $e) {
-      Log::Debug(__CLASS__.':'.__FUNCTION__.' Parse Exception : '.$e -> getMessage());
-      return new JsonResponse(['errors'=> [
-        'csvfile' => 'CSVファイルの読み込みエラーが発生しました',
-        'exception' => $e ->getMessage()
-      ]]
-      , 422);
-    }
-
-    // 1行ずつ処理
-    $ret = array();
-    foreach ($rows as $line => $value) {
-
-      // 行データに対してのばりデート（必須・内容の確認）
-      $validator->$this->validator($value);
-      
-      // データに問題があればエラーを記録 => 処理は継続
-      if ($validator->fails()) {
-        foreach ($validator->errors()->all() as $message) {
-          Log::Debug(__CLASS__.':'.__FUNCTION__.' ERROR line('.$line.') '.$message);
-          $ret['errors'][] = ['line' => $line, 'message' => $message];
-        }
-        continue;
-      }
-
-      // CSVに問題がなければ 更新 or 挿入
-      $user = User::where('loginig', $value['loginid'])->first();
-
-      // 存在したら、更新
-      if ($user) {
-        Log::Debug(__CLASS__.':'.__FUNCTION__.' UPDATE line('.$line.') '.$value['name']);
-        $user->fill($value)->save();
-        $user['updata'][] = ['line' => $line, 'message' =>$value['name']];
-      }
-
-      // DB未登録なら新規登録
-      else {
-        Log::Debug(__CLASS__.':'.__FUNCTION__.' INSERT line('.$line.') '.$vale['name']);
-        $value['password'] = Hash::make($value['loginid']); //とりあえず初期パスワードは loginIDと同じにしておく
-        User::create($value);
-        $ret['insert'][] = ['line' => $line, 'message' => $value['name']];
-      }
-    } //i行ずつ処理
-
-    // 結果を戻す
-    return ['import' => $ret];
-
-  }
-
-  public function store(Request $request)
-  {
-    Log::Debug(__CLASS__.':'.__FUNCTION__, $request->all());
-
-    // 入力項目チェック（必須やら文字数やら）
-    $validator = $this->validator($request->all());
-
-    if ($validator->fails()) {
-      $validator->validate();
-    }
->>>>>>> parent of c97fd0f... Merge pull request #20 from Programmable-school/STEP8修正
 
         // CSV をパース
         try {
