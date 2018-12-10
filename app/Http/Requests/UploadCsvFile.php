@@ -8,7 +8,7 @@ class UploadCsvFile extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
-     * 
+
      * @return bool
      */
     public function authorize()
@@ -17,18 +17,10 @@ class UploadCsvFile extends FormRequest
     }
 
     /**
-     * Get the validation rules that apply to the request
-     * 
+
      * @return array
      */
     public function rules()
     {
         return [
-            'csvfile' => [
-                'required',
-                'file',
-                'mimetypes:text/plain', //ファイルタイプは text であること
-            ],
-        ];
-    }
-}
+

@@ -10,7 +10,7 @@
       <v-card-text>
         <v-container>
           <v-layout column wrap>
-            <v-text-field class="pb-3" label="名前" placeholder="氏名を入力してください."
+            <v-text-field class="pb-3" label="名前" placeholder="氏名を入力してください"
                           v-model="items.name"    
                           :error-messages="error.name"
                           :rules="[rules.required, rules.min2]"
@@ -53,14 +53,17 @@
 <script>
   export default {
     name: 'UserDialog',
+
     props: {
     },
+
     data: () => ({
       dialog: false,
       title: '編集',
       titlecolor: 'primary',
       placeholder_password: '',
       type: '',
+
       items: { 
         loginid: '',
         name: '',
@@ -69,22 +72,28 @@
       },
       orig: {},
       error: {},
+
+
       rules: {
         required: value => !!value || 'Required.',
         min2: value => value.length >= 2 || 'Min 2 characters',
         min6: value => value.length >= 6 || 'Min 6 characters',
       },
     }),
+
     created() {
       if (process.env.MIX_DEBUG) console.log('User Dialog created.')
     },
+
     methods: {
+
       clearVar() {
         this.dialog = true
         this.clearError()
         this.items = JSON.parse(JSON.stringify(this.error))
         this.orig = JSON.parse(JSON.stringify(this.error))
       },
+
       clearError() {
         this.error = { 
           loginid: '', 
@@ -93,47 +102,58 @@
           role: false, 
         }
       },
+
       close() {
         if (process.env.MIX_DEBUG) console.log("User Dialog func close")
         this.dialog = false
       },
+
       save() {
         if (process.env.MIX_DEBUG) console.log("User Dialog func save")
+
         // 変更があった時だけ通信
         if (JSON.stringify(this.orig).replace(/[\s|　]+/g,'') !== JSON.stringify(this.items).replace(/[\s|　]+/g,'')){
           this.store()
         } 
+
         // 変更がなければただ閉じる
         else {
           this.close()
         }
       },
+
       open(item, flg) {
         if (process.env.MIX_DEBUG) console.log("User Dialog func open")
+
         // INIT VAR
         this.clearVar()
+
         // SET TYPE
         if (flg) this.type = 'D' // DELETE
         else if (item) this.type = 'U' // UPDATE
         else this.type = 'C' // CREATE
+
         // USER CREATE
         if (this.type == 'C') {
           this.title = "新規追加"
-          this.titlecolor = 'yellow',
+          this.titlecolor = 'primary',
           this.placeholder_password = "パスワードを指定してください（未指定の場合はログインＩＤを設定）"
         }
+
         // USER UPDATE
         if (this.type == 'U') {
           this.title = "編集"
-          this.titlecolor = 'black',
+          this.titlecolor = 'accent',
           this.placeholder_password = "変更する場合はパスワードを指定してください（未指定の場合は変更しない）"
         }
+
         // USER DELETE
         if (this.type == 'D') {
           this.title = "削除"
           this.titlecolor = 'error',
           this.placeholder_password = ""
         }
+
           // SET ITEM
         if (item) {
           if (item.loginid) this.items.loginid = item.loginid
@@ -147,6 +167,7 @@
           this.orig = JSON.parse(JSON.stringify(this.items))
         }
       },
+
       store() {
         if (process.env.MIX_DEBUG) console.log("User Dialog func store")
         var params = new URLSearchParams()
@@ -155,13 +176,17 @@
         params.append('pass', this.items.pass)
         params.append('role', (this.items.role ? 5 : 10))
         params.append('type', this.type)
+
         this.clearError()
+
         axios.post('/api/admin/user/store', params)
+
         .then( function (response) {
           this.$emit('reload')
           alert(this.items.name + "を保存しました")
           this.close()  // 保存が正常終了したら閉じる
         }.bind(this))
+
         .catch(function (error) {
           if (process.env.MIX_DEBUG) console.log("User Dialog store error")
           console.log(error)
@@ -187,16 +212,20 @@
           this.close()
         }.bind(this))
       },
+
       destroy() {
         if (process.env.MIX_DEBUG) console.log("User Dialog func destroy")
         var params = new URLSearchParams()
         params.append('loginid', this.items.loginid)
+
         axios.post('/api/admin/user/destroy', params)
+
         .then( function (response) {
           this.$emit('reload')
           alert(this.items.name + "\n" + "を削除しました")
           this.close()  // 保存が正常終了したら閉じる
         }.bind(this))
+
         .catch(function (error) {
           if (process.env.MIX_DEBUG) console.log("User Dialog destroy error")
           console.log(error)
@@ -210,6 +239,7 @@
           this.close()
         }.bind(this))
       },
+
     },
   }
 </script>
