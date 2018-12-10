@@ -54,11 +54,19 @@ class Csv
         $lexer = new Lexer($config);
 
         // CharsetをUTF-8に変換
+<<<<<<< HEAD
         $config->setToCharset("UTF-8");
         $config->setFromCharset("sjis-win");
 
         // CSVデータをパース
         $rows = array();
+=======
+        $config->setToCharset('UTF-8');
+        $config->setFromCharset('sjis-win');
+
+        // csv データをパース
+        $row = array();
+>>>>>>> parent of c97fd0f... Merge pull request #20 from Programmable-school/STEP8修正
         try {
             $interpreter->addObserver(function(array $row) use (&$rows) {
                 $rows[] = $row;
