@@ -18,9 +18,27 @@ import admin_user from '../components/Admin/UserComponent.vue'
 
 export default new Router({
     mode: 'history',
-    routes: [
-        { path: '/admin/user', name: 'admin_user', component: admin_user, meta: { name: '社員管理', icon: 'supervisor_account' } },
-        { path: '/home', name: 'home', component: home, meta: { name: 'ホーム', icon: 'home' } },
-        { path: '*', redirect: '/home' },
+    routes: [{
+            path: '/admin/user',
+            name: 'admin_user',
+            component: admin_user,
+            meta: {
+                name: '社員管理',
+                icon: 'supervisor_account'
+            }
+        },
+        {
+            path: '/home',
+            name: 'home',
+            component: home,
+            meta: {
+                name: 'ホーム',
+                icon: 'home'
+            }
+        },
+        {
+            path: '*',
+            redirect: '/home'
+        },
     ],
 })
