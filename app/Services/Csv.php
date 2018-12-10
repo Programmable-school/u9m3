@@ -56,6 +56,7 @@ class Csv
         // CharsetをUTF-8に変換
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         $config->setToCharset("UTF-8");
         $config->setFromCharset("sjis-win");
 
@@ -64,12 +65,17 @@ class Csv
 =======
 =======
 >>>>>>> parent of c97fd0f... Merge pull request #20 from Programmable-school/STEP8修正
+=======
+>>>>>>> parent of c97fd0f... Merge pull request #20 from Programmable-school/STEP8修正
         $config->setToCharset('UTF-8');
         $config->setFromCharset('sjis-win');
 
         // csv データをパース
         $row = array();
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of c97fd0f... Merge pull request #20 from Programmable-school/STEP8修正
+=======
 >>>>>>> parent of c97fd0f... Merge pull request #20 from Programmable-school/STEP8修正
 =======
 >>>>>>> parent of c97fd0f... Merge pull request #20 from Programmable-school/STEP8修正
