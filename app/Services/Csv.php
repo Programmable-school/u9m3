@@ -54,7 +54,8 @@ class Csv
         $config->setToCharset('UTF-8');
 
         $interpreter = new Interpreter();
-        $interpreter->unstrict();
+        //$interpreter->unstrict();
+
         $lexer = new Lexer($config);
 
         // csv　をパース
