@@ -50,11 +50,12 @@ class Csv
     {
         // Goodby CSVのconfig設定
         $config = new LexerConfig();
-        $config->setFromCharset('SJIS-win');
+        //$config->setFromCharset('SJIS-win');
         $config->setToCharset('UTF-8');
 
         $interpreter = new Interpreter();
-        $interpreter->unstrict();
+        //$interpreter->unstrict();
+
         $lexer = new Lexer($config);
 
         // csv　をパース
