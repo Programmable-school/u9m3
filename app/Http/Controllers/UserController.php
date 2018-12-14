@@ -28,7 +28,7 @@ class UserController extends Controller
 
         $data = $request->all();
 
-        if (trim($data['loginid'] == Null)) {
+        if (trim($data['loginid'] == '')) {
             return response()->json(['message' => 'loginID Not Found'], 422);
         }
 
