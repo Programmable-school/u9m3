@@ -22,6 +22,25 @@ class UserController extends Controller
         return ['users' => $users];
     }
 
+    public function show(Request $request)
+    {
+        Log::Debug(__CLASS__.':'.__FUNCTION__, $request->all());
+
+        $data = $request->all();
+
+        if (trim($data['loginid'] == '')) {
+            return response()->json(['message' => 'loginID Not Found'], 422);
+        }
+
+        $user = User::where('loginid', $data['loginid'])->first();
+
+        if (! $user) {
+            return response()->json(['message' => 'User Not Found'], 422);
+        }
+
+        return ['data' => $user];
+    }
+
 
     public function download(Request $request)
     {
@@ -129,7 +148,6 @@ class UserController extends Controller
     {
         Log::Debug(__CLASS__.':'.__FUNCTION__, $request->all());
 
-        // 入力項目チェック（必須やら文字数やら）
         $data = $request->all();
 
         // loginID 指定あり？
