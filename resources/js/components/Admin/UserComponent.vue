@@ -139,9 +139,9 @@
         }
       },
 
-      dialogOpen(item,flg,list) {
+      dialogOpen(item,flg) {
         if (process.env.MIX_DEBUG) console.log('User Component dialog open')
-        this.$refs.userDialog.open(item, (flg || false), list)
+        this.$refs.userDialog.open(item, (flg || false))
       }
     },
   }

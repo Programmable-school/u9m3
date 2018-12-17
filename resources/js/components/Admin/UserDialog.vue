@@ -42,7 +42,7 @@
                           maxlength="128"
                           required
                           counter
-                          :disabled="type != 'L'"
+                          :disabled="type == 'L'"
             ></v-text-field>
             <v-checkbox v-model="items.role"    label="管理者権限" :disabled="type == 'D'"></v-checkbox>
           </v-layout>
@@ -131,7 +131,7 @@
         }
       },
 
-      open(item, flg, list) {
+      open(item, flg,) {
         if (process.env.MIX_DEBUG) console.log("User Dialog func open")
 
         // INIT VAR
@@ -140,7 +140,7 @@
         // SET TYPE
         if (flg) this.type = 'D' // DELETE
         else if (item) this.type = 'U' // UPDATE
-        else if (list) this,type = 'L' // LISTUP
+        else if (item) this,type = 'L' // LISTUP
         else this.type = 'C' // CREATE
 
         // USER CREATE

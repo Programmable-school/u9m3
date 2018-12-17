@@ -91520,7 +91520,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
       }
     },
-    dialogOpen: function dialogOpen(item, flg, list) {
+    dialogOpen: function dialogOpen(item, flg) {
       if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_DEBUG) console.log('User Component dialog open');
       this.$refs.userDialog.open(item, flg || false);
     }
@@ -91715,7 +91715,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           this.close();
         }
     },
-    open: function open(item, flg, list) {
+    open: function open(item, flg) {
       if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_DEBUG) console.log("User Dialog func open");
 
       // INIT VAR
@@ -91724,7 +91724,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       // SET TYPE
       if (flg) this.type = 'D'; // DELETE
       else if (item) this.type = 'U'; // UPDATE
-        else if (list) this, type = 'L'; // LISTUP
+        else if (item) this, type = 'L'; // LISTUP
           else this.type = 'C'; // CREATE
 
       // USER CREATE
@@ -91980,7 +91980,7 @@ var render = function() {
                               maxlength: "128",
                               required: "",
                               counter: "",
-                              disabled: _vm.type != "L"
+                              disabled: _vm.type == "L"
                             },
                             model: {
                               value: _vm.items.loginid,
@@ -93812,7 +93812,7 @@ var render = function() {
                                   attrs: { flat: "", small: "", fab: "" },
                                   on: {
                                     click: function($event) {
-                                      _vm.dialogOpen(props.item, false)
+                                      _vm.dialogOpen(props.item, _vm.list)
                                     }
                                   }
                                 },
