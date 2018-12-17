@@ -45,8 +45,8 @@ export default {
   },
   data: () => ({
     drawer: false,
-    footer: "foo-----footer",
-    title: "tit------title"
+    footer: "チームがたぽん開発",
+    title: "社員管理表"
   }),
   mounted() {
     console.log("AdminComponent mounted.");
