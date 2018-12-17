@@ -35,6 +35,15 @@
                           counter
                           :disabled="type == 'D'"
             ></v-text-field>
+            <v-text-field class="pb-3" label="ログインID" placeholder="社員ＩＤを入力"
+                          v-model="items.loginid" 
+                          :error-messages="error.loginid" 
+                          :rules="[rules.required, rules.min6]"
+                          maxlength="128"
+                          required
+                          counter
+                          :disabled="type != 'L'"
+            ></v-text-field>
             <v-checkbox v-model="items.role"    label="管理者権限" :disabled="type == 'D'"></v-checkbox>
           </v-layout>
         </v-container>
@@ -122,7 +131,7 @@
         }
       },
 
-      open(item, flg) {
+      open(item, flg, list) {
         if (process.env.MIX_DEBUG) console.log("User Dialog func open")
 
         // INIT VAR
@@ -131,6 +140,7 @@
         // SET TYPE
         if (flg) this.type = 'D' // DELETE
         else if (item) this.type = 'U' // UPDATE
+        else if (list) this,type = 'L' // LISTUP
         else this.type = 'C' // CREATE
 
         // USER CREATE
@@ -151,6 +161,13 @@
         if (this.type == 'D') {
           this.title = "削除"
           this.titlecolor = 'error',
+          this.placeholder_password = ""
+        }
+
+        // USER LIST
+        if (this.type == 'L') {
+          this.title = "勤務実態"
+          this.titlecolor = 'blue',
           this.placeholder_password = ""
         }
 
@@ -239,6 +256,8 @@
           this.close()
         }.bind(this))
       },
+
+      
 
     },
   }

@@ -87805,7 +87805,26 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('r-link', __WEBPACK_IMPORT
 
 /* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
     mode: 'history',
-    routes: [{ path: '/admin/user', name: 'admin_user', component: __WEBPACK_IMPORTED_MODULE_6__components_Admin_UserComponent_vue___default.a, meta: { name: '社員管理', icon: 'supervisor_account' } }, { path: '/home', name: 'home', component: __WEBPACK_IMPORTED_MODULE_5__components_HomeComponent_vue___default.a, meta: { name: 'ホーム', icon: 'home' } }, { path: '*', redirect: '/home' }]
+    routes: [{
+        path: '/admin/user',
+        name: 'admin_user',
+        component: __WEBPACK_IMPORTED_MODULE_6__components_Admin_UserComponent_vue___default.a,
+        meta: {
+            name: '社員管理',
+            icon: 'supervisor_account'
+        }
+    }, {
+        path: '/home',
+        name: 'home',
+        component: __WEBPACK_IMPORTED_MODULE_5__components_HomeComponent_vue___default.a,
+        meta: {
+            name: 'ホーム',
+            icon: 'home'
+        }
+    }, {
+        path: '*',
+        redirect: '/home'
+    }]
 }));
 
 /***/ }),
@@ -90824,17 +90843,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   data: function data() {
     return {
       drawer: false,
-      footer: "foo-----footer",
-      title: "tit------title"
+      footer: "チームがたぽん開発",
+      title: "社員管理表"
     };
   },
   mounted: function mounted() {
     console.log("AdminComponent mounted.");
-    if (true) {
-      this.footer = "がたぽんまつもとの共同作成";
+    if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_FOOTER) {
+      this.footer = Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_FOOTER;
     }
-    if (true) {
-      this.title = "社員管理をしよう";
+    if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_TITLE) {
+      this.title = Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_TITLE;
     }
   },
 
@@ -91425,6 +91444,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -91453,7 +91473,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   created: function created() {
-    if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log('User Component created.');
+    if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_DEBUG) console.log('User Component created.');
     this.initialize();
   },
 
@@ -91463,19 +91483,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.getUsers();
     },
     reload: function reload() {
-      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log('User Component reload');
+      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_DEBUG) console.log('User Component reload');
       this.getUsers();
     },
     setsearch: function setsearch(id) {
-      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log('User Component set Search');
+      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_DEBUG) console.log('User Component set Search');
       this.search = id;
     },
     getUsers: function getUsers() {
-      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log('User Component getUsers');
+      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_DEBUG) console.log('User Component getUsers');
       this.loading = true;
       axios.post('/api/admin/user').then(function (response) {
         this.loading = false;
-        if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log(response);
+        if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_DEBUG) console.log(response);
         if (response.data.users) {
           this.tabledata = response.data.users;
           this.setRole();
@@ -91500,8 +91520,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
       }
     },
-    dialogOpen: function dialogOpen(item, flg) {
-      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log('User Component dialog open');
+    dialogOpen: function dialogOpen(item, flg, list) {
+      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_DEBUG) console.log('User Component dialog open');
       this.$refs.userDialog.open(item, flg || false);
     }
   }
@@ -91612,6 +91632,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'UserDialog',
@@ -91650,7 +91679,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   created: function created() {
-    if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log('User Dialog created.');
+    if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_DEBUG) console.log('User Dialog created.');
   },
 
 
@@ -91670,11 +91699,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       };
     },
     close: function close() {
-      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log("User Dialog func close");
+      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_DEBUG) console.log("User Dialog func close");
       this.dialog = false;
     },
     save: function save() {
-      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log("User Dialog func save");
+      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_DEBUG) console.log("User Dialog func save");
 
       // 変更があった時だけ通信
       if (JSON.stringify(this.orig).replace(/[\s|　]+/g, '') !== JSON.stringify(this.items).replace(/[\s|　]+/g, '')) {
@@ -91686,8 +91715,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           this.close();
         }
     },
-    open: function open(item, flg) {
-      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log("User Dialog func open");
+    open: function open(item, flg, list) {
+      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_DEBUG) console.log("User Dialog func open");
 
       // INIT VAR
       this.clearVar();
@@ -91695,7 +91724,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       // SET TYPE
       if (flg) this.type = 'D'; // DELETE
       else if (item) this.type = 'U'; // UPDATE
-        else this.type = 'C'; // CREATE
+        else if (list) this, type = 'L'; // LISTUP
+          else this.type = 'C'; // CREATE
 
       // USER CREATE
       if (this.type == 'C') {
@@ -91715,6 +91745,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.titlecolor = 'error', this.placeholder_password = "";
       }
 
+      // USER LIST
+      if (this.type == 'L') {
+        this.title = "勤務実態";
+        this.titlecolor = 'blue', this.placeholder_password = "";
+      }
+
       // SET ITEM
       if (item) {
         if (item.loginid) this.items.loginid = item.loginid;
@@ -91729,7 +91765,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
     },
     store: function store() {
-      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log("User Dialog func store");
+      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_DEBUG) console.log("User Dialog func store");
       var params = new URLSearchParams();
       params.append('loginid', this.items.loginid);
       params.append('name', this.items.name);
@@ -91744,7 +91780,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         alert(this.items.name + "を保存しました");
         this.close(); // 保存が正常終了したら閉じる
       }.bind(this)).catch(function (error) {
-        if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log("User Dialog store error");
+        if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_DEBUG) console.log("User Dialog store error");
         console.log(error);
         if (error.response && [401, 419].includes(error.response.status)) {
           this.$emit('axios-logout');
@@ -91767,7 +91803,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }.bind(this));
     },
     destroy: function destroy() {
-      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log("User Dialog func destroy");
+      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_DEBUG) console.log("User Dialog func destroy");
       var params = new URLSearchParams();
       params.append('loginid', this.items.loginid);
 
@@ -91776,7 +91812,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         alert(this.items.name + "\n" + "を削除しました");
         this.close(); // 保存が正常終了したら閉じる
       }.bind(this)).catch(function (error) {
-        if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log("User Dialog destroy error");
+        if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_DEBUG) console.log("User Dialog destroy error");
         console.log(error);
         if (error.response && [401, 419].includes(error.response.status)) {
           this.$emit('axios-logout');
@@ -91931,6 +91967,27 @@ var render = function() {
                                 _vm.$set(_vm.items, "pass", $$v)
                               },
                               expression: "items.pass"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("v-text-field", {
+                            staticClass: "pb-3",
+                            attrs: {
+                              label: "ログインID",
+                              placeholder: "社員ＩＤを入力",
+                              "error-messages": _vm.error.loginid,
+                              rules: [_vm.rules.required, _vm.rules.min6],
+                              maxlength: "128",
+                              required: "",
+                              counter: "",
+                              disabled: _vm.type != "L"
+                            },
+                            model: {
+                              value: _vm.items.loginid,
+                              callback: function($$v) {
+                                _vm.$set(_vm.items, "loginid", $$v)
+                              },
+                              expression: "items.loginid"
                             }
                           }),
                           _vm._v(" "),
@@ -92121,13 +92178,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   created: function created() {
-    if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log('CSV Download Btn created.');
+    if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_DEBUG) console.log('CSV Download Btn created.');
   },
 
 
   methods: {
     csvdownload: function csvdownload(filename, url) {
-      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log("CSV Download func csvdownload");
+      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_DEBUG) console.log("CSV Download func csvdownload");
       var config = {
         responseType: 'blob',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
@@ -92138,7 +92195,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.csvdownloading = false;
         this.saveCsvFile(response);
       }.bind(this)).catch(function (error) {
-        if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log("CSV Download csvdownload error");
+        if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_DEBUG) console.log("CSV Download csvdownload error");
         this.csvdownloading = false;
         console.log(error);
         if (error.response && [401, 419].includes(error.response.status)) {
@@ -92342,7 +92399,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
   },
 
   created: function created() {
-    if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log('CSV Upload Btn created.');
+    if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_DEBUG) console.log('CSV Upload Btn created.');
   },
 
 
@@ -92357,7 +92414,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log('CSV Upload onFilePicked');
+                if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_DEBUG) console.log('CSV Upload onFilePicked');
                 files = e.target.files;
 
                 if (!(files[0] == undefined)) {
@@ -92376,7 +92433,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                   break;
                 }
 
-                if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log("FILE:" + files[i].name + " (" + files[i].size + " byte)");
+                if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_DEBUG) console.log("FILE:" + files[i].name + " (" + files[i].size + " byte)");
                 _context.next = 9;
                 return this.csvupload(files[i]);
 
@@ -92403,7 +92460,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
       var _this = this;
 
       return new Promise(function (resolve, reject) {
-        if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log('CSV Upload csv upload');
+        if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_DEBUG) console.log('CSV Upload csv upload');
         var config = {
           headers: { 'Content-Type': 'multipart/form-data' }
 
@@ -92423,16 +92480,16 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         // アップロード 正常
         .then(function (response) {
           this.csvuploading = false;
-          if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log("CSV Upload success");
-          if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log(response.data);
+          if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_DEBUG) console.log("CSV Upload success");
+          if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_DEBUG) console.log(response.data);
           this.resultDialog(file, response.data.import);
         }.bind(_this))
 
         // アップロード 異常
         .catch(function (error) {
           this.csvuploading = false;
-          if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log("CSV Upload error");
-          if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log(error.response);
+          if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_DEBUG) console.log("CSV Upload error");
+          if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_DEBUG) console.log(error.response);
           if (error.response && [401, 419].includes(error.response.status)) {
             this.$emit('axios-logout');
           } else if (error.response && [422].includes(error.response.status)) {
@@ -93365,17 +93422,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   created: function created() {
-    if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log('Csv Upload Dialog created.');
+    if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_DEBUG) console.log('Csv Upload Dialog created.');
   },
 
 
   methods: {
     close: function close() {
-      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log("Csv Upload Dialog func close");
+      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_DEBUG) console.log("Csv Upload Dialog func close");
       this.dialog = false;
     },
     open: function open(file, data) {
-      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_FOOTER":"がたぽんまつもとの共同作成","MIX_TITLE":"社員管理をしよう","NODE_ENV":"development"}).MIX_DEBUG) console.log("Csv Upload Dialog func open");
+      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_DEBUG) console.log("Csv Upload Dialog func open");
       this.dialog = true;
       this.filename = file.name;
       this.result = '';
@@ -93744,6 +93801,24 @@ var render = function() {
                                 [
                                   _c("v-icon", { attrs: { color: "error" } }, [
                                     _vm._v("delete")
+                                  ])
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-btn",
+                                {
+                                  attrs: { flat: "", small: "", fab: "" },
+                                  on: {
+                                    click: function($event) {
+                                      _vm.dialogOpen(props.item, false)
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("v-icon", { attrs: { color: "blue" } }, [
+                                    _vm._v("recent_actors")
                                   ])
                                 ],
                                 1

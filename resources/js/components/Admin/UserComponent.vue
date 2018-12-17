@@ -37,6 +37,7 @@
             <td class="text-xs-center" xs1>
               <v-btn flat small fab @click="dialogOpen(props.item)"><v-icon color="success">edit</v-icon></v-btn>
               <v-btn flat small fab @click="dialogOpen(props.item,true)"><v-icon color="error">delete</v-icon></v-btn>
+              <v-btn flat small fab @click="dialogOpen(props.item)"><v-icon color="blue">recent_actors</v-icon></v-btn>
             </td>
           </tr>
         </template>
@@ -138,9 +139,9 @@
         }
       },
 
-      dialogOpen(item,flg) {
+      dialogOpen(item,flg,list) {
         if (process.env.MIX_DEBUG) console.log('User Component dialog open')
-        this.$refs.userDialog.open(item, (flg || false))
+        this.$refs.userDialog.open(item, (flg || false), list)
       }
     },
   }
