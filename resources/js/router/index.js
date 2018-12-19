@@ -44,7 +44,7 @@ export default new Router({
         {
             path: '/admin/userlist',
             name: 'admin_userlist',
-            component: admin_userlist,
+            component: UserList,
             meta: {
                 name: '勤務管理',
                 icon: 'supervisor_account'
