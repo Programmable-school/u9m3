@@ -1902,7 +1902,7 @@
             try {
                 oldLocale = globalLocale._abbr;
                 var aliasedRequire = require;
-                __webpack_require__(216)("./" + name);
+                __webpack_require__(219)("./" + name);
                 getSetGlobalLocale(oldLocale);
             } catch (e) {}
         }
@@ -42011,7 +42011,7 @@ function applyToTag (styleElement, obj) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(142);
-module.exports = __webpack_require__(217);
+module.exports = __webpack_require__(220);
 
 
 /***/ }),
@@ -87785,6 +87785,8 @@ module.exports = "/fonts/vendor/material-design-icons-icondist/MaterialIcons-Reg
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_HomeComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_HomeComponent_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_Admin_UserComponent_vue__ = __webpack_require__(198);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_Admin_UserComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_Admin_UserComponent_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_Admin_UserList_vue__ = __webpack_require__(216);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_Admin_UserList_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__components_Admin_UserList_vue__);
 
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]);
@@ -87800,6 +87802,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('admin-component', __WEBPA
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('r-link', __WEBPACK_IMPORTED_MODULE_4__components_RouterLink_vue___default.a);
 
 // 
+
 
 
 
@@ -87824,6 +87827,14 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('r-link', __WEBPACK_IMPORT
     }, {
         path: '*',
         redirect: '/home'
+    }, {
+        path: '/admin/userlist',
+        name: 'admin_userlist',
+        component: __WEBPACK_IMPORTED_MODULE_7__components_Admin_UserList_vue___default.a,
+        meta: {
+            name: '勤務管理',
+            icon: 'supervisor_account'
+        }
     }]
 }));
 
@@ -93812,7 +93823,7 @@ var render = function() {
                                   attrs: { flat: "", small: "", fab: "" },
                                   on: {
                                     click: function($event) {
-                                      _vm.dialogOpen(props.item, _vm.list)
+                                      _vm.dialogOpen(props.item)
                                     }
                                   }
                                 },
@@ -93904,6 +93915,319 @@ if (false) {
 
 /***/ }),
 /* 216 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(217)
+/* template */
+var __vue_template__ = __webpack_require__(218)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/Admin/UserList.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0df18c94", Component.options)
+  } else {
+    hotAPI.reload("data-v-0df18c94", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 217 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'UserList',
+
+  components: {},
+
+  props: {},
+
+  data: function data() {
+    return {
+      loading: false,
+      search: '',
+      pagination: { sortBy: 'name', descending: false },
+
+      tabledata: [],
+      headers: [{ align: 'center', sortable: false, text: 'No' }, { align: 'left', sortable: true, text: '社員ID', value: 'loginid' }, { align: 'left', sortable: true, text: '氏名', value: 'name' }, { align: 'center', sortable: true, text: '権限', value: 'role' }, { align: 'center', sortable: false, text: 'アクション' }]
+    };
+  },
+
+  created: function created() {
+    if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_DEBUG) console.log('User Component created.');
+    this.initialize();
+  },
+
+
+  methods: {
+    initialize: function initialize() {
+      this.getUsers();
+    },
+    reload: function reload() {
+      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_DEBUG) console.log('User Component reload');
+      this.getUsers();
+    },
+    setsearch: function setsearch(id) {
+      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_DEBUG) console.log('User Component set Search');
+      this.search = id;
+    },
+    getUsers: function getUsers() {
+      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_DEBUG) console.log('User Component getUsers');
+      this.loading = true;
+      axios.post('/api/admin/user').then(function (response) {
+        this.loading = false;
+        if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_DEBUG) console.log(response);
+        if (response.data.users) {
+          this.tabledata = response.data.users;
+          this.setRole();
+        }
+      }.bind(this)).catch(function (error) {
+        this.loading = false;
+        console.log(error);
+        if (error.response && [401, 419].includes(error.response.status)) {
+          this.$emit('axios-logout');
+        }
+      }.bind(this));
+    },
+    setRole: function setRole() {
+      for (var i = 0; i < this.tabledata.length; i++) {
+        if (this.tabledata[i].role) {
+          if (this.tabledata[i].role == 5) {
+            this.tabledata[i].role = '管理者';
+          }
+          if (this.tabledata[i].role == 10) {
+            this.tabledata[i].role = 'ユーザ';
+          }
+        }
+      }
+    }
+  }
+});
+
+/***/ }),
+/* 218 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-flex",
+    [
+      _c(
+        "v-card",
+        { staticClass: "m-3 px-3", attrs: { xs12: "" } },
+        [
+          _c(
+            "v-card-title",
+            { staticClass: "title" },
+            [
+              _c("v-icon", { staticClass: "pr-2" }, [
+                _vm._v(_vm._s(_vm.$route.meta.icon))
+              ]),
+              _vm._v(
+                " " +
+                  _vm._s(_vm.$route.meta.name) +
+                  " " +
+                  _vm._s(/* 社員管理 */) +
+                  "\n      "
+              ),
+              _c("user-dialog", {
+                ref: "userDialog",
+                on: { reload: _vm.reload, setsearch: _vm.setsearch }
+              }),
+              _vm._v(" "),
+              _c("v-spacer"),
+              _vm._v(" "),
+              _c("v-spacer"),
+              _vm._v(" "),
+              _c("v-text-field", {
+                attrs: {
+                  "prepend-icon": "search",
+                  label: "Search",
+                  "single-line": "",
+                  "hide-details": "",
+                  clearable: ""
+                },
+                model: {
+                  value: _vm.search,
+                  callback: function($$v) {
+                    _vm.search = $$v
+                  },
+                  expression: "search"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-data-table",
+            {
+              staticClass: "elevation-0 p-1",
+              attrs: {
+                headers: _vm.headers,
+                items: _vm.tabledata,
+                pagination: _vm.pagination,
+                "rows-per-page-items": [10, 25, 50, { text: "All", value: -1 }],
+                loading: _vm.loading,
+                search: _vm.search
+              },
+              on: {
+                "update:pagination": function($event) {
+                  _vm.pagination = $event
+                }
+              },
+              scopedSlots: _vm._u([
+                {
+                  key: "items",
+                  fn: function(props) {
+                    return [
+                      _c(
+                        "tr",
+                        [
+                          _c(
+                            "td",
+                            {
+                              staticClass: "text-xs-center",
+                              attrs: { xs1: "" }
+                            },
+                            [
+                              _vm._v(
+                                _vm._s(
+                                  props.index +
+                                    1 +
+                                    (_vm.pagination.page - 1) *
+                                      _vm.pagination.rowsPerPage
+                                )
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _vm._l(_vm.headers.length - 2, function(n) {
+                            return [
+                              _c("td", {
+                                class: "text-xs-" + _vm.headers[n].align,
+                                staticStyle: { "white-space": "nowrap" },
+                                domProps: {
+                                  textContent: _vm._s(
+                                    props.item[_vm.headers[n].value]
+                                  )
+                                }
+                              })
+                            ]
+                          })
+                        ],
+                        2
+                      )
+                    ]
+                  }
+                }
+              ])
+            },
+            [
+              _c("v-progress-linear", {
+                attrs: { slot: "progress", color: "blue", indeterminate: "" },
+                slot: "progress"
+              })
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-0df18c94", module.exports)
+  }
+}
+
+/***/ }),
+/* 219 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
@@ -94168,10 +94492,10 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 216;
+webpackContext.id = 219;
 
 /***/ }),
-/* 217 */
+/* 220 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
