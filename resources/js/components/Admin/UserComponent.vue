@@ -37,7 +37,9 @@
             <td class="text-xs-center" xs1>
               <v-btn flat small fab @click="dialogOpen(props.item)"><v-icon color="success">edit</v-icon></v-btn>
               <v-btn flat small fab @click="dialogOpen(props.item,true)"><v-icon color="error">delete</v-icon></v-btn>
-              <v-btn flat small fab @click="dialogOpen(props.item)"><v-icon color="blue">recent_actors</v-icon></v-btn>
+              <router-link to="/admin/userlist">
+              <v-btn flat small fab ><v-icon color="blue">recent_actors</v-icon></v-btn>
+              </router-link>
             </td>
           </tr>
         </template>

@@ -91456,6 +91456,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -93818,19 +93820,21 @@ var render = function() {
                               ),
                               _vm._v(" "),
                               _c(
-                                "v-btn",
-                                {
-                                  attrs: { flat: "", small: "", fab: "" },
-                                  on: {
-                                    click: function($event) {
-                                      _vm.dialogOpen(props.item)
-                                    }
-                                  }
-                                },
+                                "router-link",
+                                { attrs: { to: "/admin/userlist" } },
                                 [
-                                  _c("v-icon", { attrs: { color: "blue" } }, [
-                                    _vm._v("recent_actors")
-                                  ])
+                                  _c(
+                                    "v-btn",
+                                    { attrs: { flat: "", small: "", fab: "" } },
+                                    [
+                                      _c(
+                                        "v-icon",
+                                        { attrs: { color: "blue" } },
+                                        [_vm._v("recent_actors")]
+                                      )
+                                    ],
+                                    1
+                                  )
                                 ],
                                 1
                               )
@@ -94049,7 +94053,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     getUsers: function getUsers() {
       if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_DEBUG) console.log('User Component getUsers');
       this.loading = true;
-      axios.post('/api/admin/user').then(function (response) {
+      axios.post('admin/user/show').then(function (response) {
         this.loading = false;
         if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_DEBUG) console.log(response);
         if (response.data.users) {
@@ -94105,7 +94109,7 @@ var render = function() {
                 " " +
                   _vm._s(_vm.$route.meta.name) +
                   " " +
-                  _vm._s(/* 社員管理 */) +
+                  _vm._s(/* 勤務管理 */) +
                   "\n      "
               ),
               _c("user-dialog", {
