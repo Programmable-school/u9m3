@@ -15,6 +15,7 @@ Vue.component('r-link', r_link)
 // 
 import home from '../components/HomeComponent.vue'
 import admin_user from '../components/Admin/UserComponent.vue'
+import UserList from '../components/Admin/UserList.vue'
 
 export default new Router({
     mode: 'history',
@@ -39,6 +40,15 @@ export default new Router({
         {
             path: '*',
             redirect: '/home'
+        },
+        {
+            path: '/admin/userlist',
+            name: 'admin_userlist',
+            component: UserList,
+            meta: {
+                name: '勤務管理',
+                icon: 'supervisor_account'
+            }
         },
     ],
 })

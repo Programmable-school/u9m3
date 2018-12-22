@@ -1,9 +1,9 @@
 <template>
-  <v-flex>
+    <v-flex>
     <v-card xs12 class="m-3 px-3">
 
       <v-card-title class="title">
-        <v-icon class="pr-2">{{ $route.meta.icon }}</v-icon> {{ $route.meta.name }} {{ /* 社員管理 */ }}
+        <v-icon class="pr-2">{{ $route.meta.icon }}</v-icon> {{ $route.meta.name }} {{ /* 勤務管理 */ }}
         <user-dialog ref="userDialog" @reload="reload" @setsearch="setsearch"></user-dialog>
         <v-spacer></v-spacer>
         <v-spacer></v-spacer>
@@ -34,41 +34,18 @@
             <template v-for="n in (headers.length - 2)">
               <td :class="'text-xs-' + headers[n].align" style="white-space: nowrap;" v-text="props.item[headers[n].value]"></td>
             </template>
-            <td class="text-xs-center" xs1>
-              <v-btn flat small fab @click="dialogOpen(props.item)"><v-icon color="success">edit</v-icon></v-btn>
-              <v-btn flat small fab @click="dialogOpen(props.item,true)"><v-icon color="error">delete</v-icon></v-btn>
-              <router-link to="/admin/userlist">
-              <v-btn flat small fab ><v-icon color="blue">recent_actors</v-icon></v-btn>
-              </router-link>
-            </td>
           </tr>
         </template>
       </v-data-table>
-
-      <v-spacer></v-spacer>
-
-      <v-card-actions>
-        <v-btn flat block color="primary" @click="dialogOpen(null)"><v-icon>person_add</v-icon>新規追加</v-btn>
-        <v-spacer></v-spacer>
-        <csv-download url="/api/admin/user/download" color="primary" @axios-logout="$emit('axios-logout')"></csv-download>
-        <csv-upload   url="/api/admin/user/upload" multiple="false" @reload="reload"  @axios-logout="$emit('axios-logout')"></csv-upload>
-      </v-card-actions>
     </v-card>
   </v-flex>
 </template>
 
 <script>
-  import user_dialog from './UserDialog.vue'
-  import csv_download from './CsvDownload.vue'
-  import csv_upload from './CsvUpload.vue'
-
   export default {
-    name: 'UserComponent',
+    name: 'UserList',
 
     components: {
-      'user-dialog': user_dialog,
-      'csv-download': csv_download,
-      'csv-upload': csv_upload,
     },
 
     props: {
@@ -112,7 +89,7 @@
       getUsers() {
         if (process.env.MIX_DEBUG) console.log('User Component getUsers')
         this.loading = true
-        axios.post('/api/admin/user')
+        axios.post('admin/user/show')
 
         .then( function (response) {
           this.loading = false
@@ -140,11 +117,6 @@
           }
         }
       },
-
-      dialogOpen(item,flg) {
-        if (process.env.MIX_DEBUG) console.log('User Component dialog open')
-        this.$refs.userDialog.open(item, (flg || false))
-      }
     },
   }
 </script>
