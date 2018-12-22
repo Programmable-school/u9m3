@@ -87828,7 +87828,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('r-link', __WEBPACK_IMPORT
         path: '*',
         redirect: '/home'
     }, {
-        path: '/admin/userlist',
+        path: '/:id',
         name: 'admin_userlist',
         component: __WEBPACK_IMPORTED_MODULE_7__components_Admin_UserList_vue___default.a,
         meta: {
@@ -91458,6 +91458,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -91481,7 +91482,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       pagination: { sortBy: 'name', descending: false },
 
       tabledata: [],
-      headers: [{ align: 'center', sortable: false, text: 'No' }, { align: 'left', sortable: true, text: '社員ID', value: 'loginid' }, { align: 'left', sortable: true, text: '氏名', value: 'name' }, { align: 'center', sortable: true, text: '権限', value: 'role' }, { align: 'center', sortable: false, text: 'アクション' }]
+      headers: [{ align: 'center', sortable: false, text: 'No' }, { align: 'left', sortable: true, text: '社員ID', value: 'loginid' }, { align: 'left', sortable: true, text: '氏名', value: 'name' }, { align: 'center', sortable: true, text: '権限', value: 'role' }, { align: 'center', sortable: false, text: 'アクション' }],
+      items: {
+        loginid: '',
+        name: '',
+        pass: '',
+        role: false
+      }
     };
   },
 
@@ -93821,7 +93828,15 @@ var render = function() {
                               _vm._v(" "),
                               _c(
                                 "router-link",
-                                { attrs: { to: "/admin/userlist" } },
+                                {
+                                  staticClass: "userlist",
+                                  attrs: {
+                                    to: {
+                                      name: "admin_userlist",
+                                      params: { id: _vm.items.loginid }
+                                    }
+                                  }
+                                },
                                 [
                                   _c(
                                     "v-btn",
@@ -94006,13 +94021,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'UserList',
@@ -94028,7 +94036,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       pagination: { sortBy: 'name', descending: false },
 
       tabledata: [],
-      headers: [{ align: 'center', sortable: false, text: 'No' }, { align: 'left', sortable: true, text: '社員ID', value: 'loginid' }, { align: 'left', sortable: true, text: '氏名', value: 'name' }, { align: 'center', sortable: true, text: '権限', value: 'role' }, { align: 'center', sortable: false, text: 'アクション' }]
+      headers: [{ align: 'center', sortable: false, text: 'No' }, { align: 'left', sortable: true, text: '社員ID', value: 'loginid' }, { align: 'left', sortable: true, text: '氏名', value: 'name' }, { align: 'center', sortable: true, text: '権限', value: 'role' }, { align: 'center', sortable: false, text: 'アクション' }],
+
+      items: {
+        loginid: '',
+        name: '',
+        pass: '',
+        role: false
+      },
+      orig: {},
+      error: {}
     };
   },
 
@@ -94079,6 +94096,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           }
         }
       }
+    },
+    open: function open(item) {
+      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_DEBUG) console.log("User Dialog func open");
+
+      // INIT VAR
+      this.clearVar();
+      // SET ITEM
+      if (item) {
+        if (item.loginid) this.items.loginid = item.loginid;
+        if (item.name) this.items.name = item.name;
+        if (item.role) {
+          if (item.role == '管理者') {
+            this.items.role = true;
+          }
+        }
+        // COPY ORIG
+        this.orig = JSON.parse(JSON.stringify(this.items));
+      }
     }
   }
 });
@@ -94120,23 +94155,9 @@ var render = function() {
               _c("v-spacer"),
               _vm._v(" "),
               _c("v-spacer"),
-              _vm._v(" "),
-              _c("v-text-field", {
-                attrs: {
-                  "prepend-icon": "search",
-                  label: "Search",
-                  "single-line": "",
-                  "hide-details": "",
-                  clearable: ""
-                },
-                model: {
-                  value: _vm.search,
-                  callback: function($$v) {
-                    _vm.search = $$v
-                  },
-                  expression: "search"
-                }
-              })
+              _vm._v(
+                "\n      value is " + _vm._s(_vm.$route.params.value) + "\n    "
+              )
             ],
             1
           ),

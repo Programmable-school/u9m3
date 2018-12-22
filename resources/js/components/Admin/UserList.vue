@@ -7,14 +7,7 @@
         <user-dialog ref="userDialog" @reload="reload" @setsearch="setsearch"></user-dialog>
         <v-spacer></v-spacer>
         <v-spacer></v-spacer>
-        <v-text-field
-          v-model="search"
-          prepend-icon="search"
-          label="Search"
-          single-line
-          hide-details
-          clearable
-        ></v-text-field>
+        value is {{ $route.params.value }}
       </v-card-title>
 
       <v-data-table
@@ -64,6 +57,15 @@
         { align: 'center', sortable: true,  text: '権限',     value: 'role' },
         { align: 'center', sortable: false, text: 'アクション',       },
       ],
+
+      items: { 
+        loginid: '',
+        name: '',
+        pass: '',
+        role: false,
+      },
+      orig: {},
+      error: {},
     }),
 
     created() {
@@ -115,6 +117,25 @@
             if (this.tabledata[i].role == 5) { this.tabledata[i].role = '管理者'  }
             if (this.tabledata[i].role == 10) { this.tabledata[i].role = 'ユーザ'  }
           }
+        }
+      },
+
+      open(item) {
+        if (process.env.MIX_DEBUG) console.log("User Dialog func open")
+
+        // INIT VAR
+        this.clearVar()
+          // SET ITEM
+        if (item) {
+          if (item.loginid) this.items.loginid = item.loginid
+          if (item.name) this.items.name = item.name
+          if (item.role) {
+            if (item.role == '管理者') {
+              this.items.role = true
+            }
+          }
+          // COPY ORIG
+          this.orig = JSON.parse(JSON.stringify(this.items))
         }
       },
     },

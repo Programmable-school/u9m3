@@ -42,7 +42,7 @@ export default new Router({
             redirect: '/home'
         },
         {
-            path: '/admin/userlist',
+            path: '/:id',
             name: 'admin_userlist',
             component: UserList,
             meta: {

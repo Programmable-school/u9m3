@@ -37,7 +37,8 @@
             <td class="text-xs-center" xs1>
               <v-btn flat small fab @click="dialogOpen(props.item)"><v-icon color="success">edit</v-icon></v-btn>
               <v-btn flat small fab @click="dialogOpen(props.item,true)"><v-icon color="error">delete</v-icon></v-btn>
-              <router-link to="/admin/userlist">
+              <!-- 登録したidによって表示させる内容を変化させたいのでページ遷移をidによって変える -->
+              <router-link class="userlist" v-bind:to="{name: 'admin_userlist', params: {id: items.loginid}}">
               <v-btn flat small fab ><v-icon color="blue">recent_actors</v-icon></v-btn>
               </router-link>
             </td>
@@ -87,6 +88,13 @@
         { align: 'center', sortable: true,  text: '権限',     value: 'role' },
         { align: 'center', sortable: false, text: 'アクション',       },
       ],
+      items: { 
+        id: '',
+        loginid: '',
+        name: '',
+        pass: '',
+        role: false,
+      },
     }),
 
     created() {
