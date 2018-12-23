@@ -2,6 +2,17 @@ import Vue from 'vue'
 import Router from 'vue-router'
 Vue.use(Router)
 
+// // vue-routerのインスタンス生成 ここでパスを設定する
+// const router = new VueRouter({
+//     mode: 'history',
+//     routes: [
+//         // パラメータ付きの場合はコロンを使ってパラメータを表現する
+//         {
+//             path: '/user/:id',
+//             component: require('./components/Articles/Show.vue')
+//         },
+//     ]
+// });
 // 
 import example_component from '../components/ExampleComponent.vue'
 import admin_component from '../components/AdminComponent.vue'
@@ -42,7 +53,7 @@ export default new Router({
             redirect: '/home'
         },
         {
-            path: '/admin/userlist',
+            path: '/admin/user/:id',
             name: 'admin_userlist',
             component: UserList,
             meta: {
@@ -50,5 +61,10 @@ export default new Router({
                 icon: 'supervisor_account'
             }
         },
+        // {
+        //     path: '/test',
+        //     name: 'test',
+        //     component: Test,
+        // },
     ],
 })
