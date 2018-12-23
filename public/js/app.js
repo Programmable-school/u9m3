@@ -87791,6 +87791,17 @@ module.exports = "/fonts/vendor/material-design-icons-icondist/MaterialIcons-Reg
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]);
 
+// // vue-routerのインスタンス生成 ここでパスを設定する
+// const router = new VueRouter({
+//     mode: 'history',
+//     routes: [
+//         // パラメータ付きの場合はコロンを使ってパラメータを表現する
+//         {
+//             path: '/user/:id',
+//             component: require('./components/Articles/Show.vue')
+//         },
+//     ]
+// });
 // 
 
 
@@ -87828,7 +87839,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('r-link', __WEBPACK_IMPORT
         path: '*',
         redirect: '/home'
     }, {
-        path: '/:id',
+        path: '/admin/user/:id',
         name: 'admin_userlist',
         component: __WEBPACK_IMPORTED_MODULE_7__components_Admin_UserList_vue___default.a,
         meta: {
@@ -91465,12 +91476,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'UserComponent',
+  name: "UserComponent",
 
   components: {
-    'user-dialog': __WEBPACK_IMPORTED_MODULE_0__UserDialog_vue___default.a,
-    'csv-download': __WEBPACK_IMPORTED_MODULE_1__CsvDownload_vue___default.a,
-    'csv-upload': __WEBPACK_IMPORTED_MODULE_2__CsvUpload_vue___default.a
+    "user-dialog": __WEBPACK_IMPORTED_MODULE_0__UserDialog_vue___default.a,
+    "csv-download": __WEBPACK_IMPORTED_MODULE_1__CsvDownload_vue___default.a,
+    "csv-upload": __WEBPACK_IMPORTED_MODULE_2__CsvUpload_vue___default.a
   },
 
   props: {},
@@ -91478,22 +91489,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   data: function data() {
     return {
       loading: false,
-      search: '',
-      pagination: { sortBy: 'name', descending: false },
+      search: "",
+      pagination: { sortBy: "name", descending: false },
 
       tabledata: [],
-      headers: [{ align: 'center', sortable: false, text: 'No' }, { align: 'left', sortable: true, text: '社員ID', value: 'loginid' }, { align: 'left', sortable: true, text: '氏名', value: 'name' }, { align: 'center', sortable: true, text: '権限', value: 'role' }, { align: 'center', sortable: false, text: 'アクション' }],
+      headers: [{ align: "center", sortable: false, text: "No" }, { align: "left", sortable: true, text: "社員ID", value: "loginid" }, { align: "left", sortable: true, text: "氏名", value: "name" }, { align: "center", sortable: true, text: "権限", value: "role" }, { align: "center", sortable: false, text: "アクション" }],
       items: {
-        loginid: '',
-        name: '',
-        pass: '',
+        id: "",
+        loginid: "",
+        name: "",
+        pass: "",
         role: false
       }
     };
   },
 
   created: function created() {
-    if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_DEBUG) console.log('User Component created.');
+    if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_DEBUG) console.log("User Component created.");
     this.initialize();
   },
 
@@ -91503,17 +91515,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.getUsers();
     },
     reload: function reload() {
-      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_DEBUG) console.log('User Component reload');
+      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_DEBUG) console.log("User Component reload");
       this.getUsers();
     },
     setsearch: function setsearch(id) {
-      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_DEBUG) console.log('User Component set Search');
+      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_DEBUG) console.log("User Component set Search");
       this.search = id;
     },
     getUsers: function getUsers() {
-      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_DEBUG) console.log('User Component getUsers');
+      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_DEBUG) console.log("User Component getUsers");
       this.loading = true;
-      axios.post('/api/admin/user').then(function (response) {
+      axios.post("/api/admin/user").then(function (response) {
         this.loading = false;
         if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_DEBUG) console.log(response);
         if (response.data.users) {
@@ -91524,7 +91536,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.loading = false;
         console.log(error);
         if (error.response && [401, 419].includes(error.response.status)) {
-          this.$emit('axios-logout');
+          this.$emit("axios-logout");
         }
       }.bind(this));
     },
@@ -91532,16 +91544,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       for (var i = 0; i < this.tabledata.length; i++) {
         if (this.tabledata[i].role) {
           if (this.tabledata[i].role == 5) {
-            this.tabledata[i].role = '管理者';
+            this.tabledata[i].role = "管理者";
           }
           if (this.tabledata[i].role == 10) {
-            this.tabledata[i].role = 'ユーザ';
+            this.tabledata[i].role = "ユーザ";
           }
         }
       }
     },
     dialogOpen: function dialogOpen(item, flg) {
-      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_DEBUG) console.log('User Component dialog open');
+      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_DEBUG) console.log("User Component dialog open");
       this.$refs.userDialog.open(item, flg || false);
     }
   }
@@ -93693,7 +93705,7 @@ var render = function() {
                   _vm._s(_vm.$route.meta.name) +
                   " " +
                   _vm._s(/* 社員管理 */) +
-                  "\n      "
+                  "\n        "
               ),
               _c("user-dialog", {
                 ref: "userDialog",
@@ -93833,7 +93845,7 @@ var render = function() {
                                   attrs: {
                                     to: {
                                       name: "admin_userlist",
-                                      params: { id: _vm.items.loginid }
+                                      params: { id: props.item.id }
                                     }
                                   }
                                 },
@@ -94070,7 +94082,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     getUsers: function getUsers() {
       if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_DEBUG) console.log('User Component getUsers');
       this.loading = true;
-      axios.post('admin/user/show').then(function (response) {
+      axios.get('admin/user/show').then(function (response) {
         this.loading = false;
         if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_DEBUG) console.log(response);
         if (response.data.users) {

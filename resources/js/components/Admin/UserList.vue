@@ -91,7 +91,7 @@
       getUsers() {
         if (process.env.MIX_DEBUG) console.log('User Component getUsers')
         this.loading = true
-        axios.post('admin/user/show')
+        axios.get('admin/user/show')
 
         .then( function (response) {
           this.loading = false
