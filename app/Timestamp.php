@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Timestamps extends Model
+class Timestamp extends Model
 {
     protected $fillable = ['user_id', 'punchIn', 'punchOut'];
 

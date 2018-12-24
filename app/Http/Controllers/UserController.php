@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use App\User;
+use App\Timestamp;
 use Validator;
 use App\Facades\Csv;
 use App\Http\Requests\UploadCsvFile;
@@ -262,4 +263,27 @@ class UserController extends Controller
         // チェック結果を戻す
         return $validator;
     }
+
+    /**
+     * 出勤打刻
+     */
+    public function punchIn(Request $request)
+    {
+        Log::Debug(__CLASS__.':'.__FUNCTION__, $request->all());
+
+        $data = $request->all();
+
+        if(! $data['punchin']) {
+            return response()->json(['message' => '打刻エラーが発生しました'], 422);
+        }
+
+        $user = User::where('id', $data['id'])->first();
+        $timestamp = Timestamp::create([
+            'punchin' => $data['panchin'],
+            'user_id' => $user['id']
+        ]);
+
+        return ['timestamp' => $timestamp];
+    }
+    
 }
