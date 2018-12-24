@@ -34,6 +34,12 @@ Route::group( ['middleware' => ['auth', 'can:admin']], function() {
   Route::post('/api/admin/user/show', 'UserController@show')->name('admin/user/show');
 });
 
+// User 打刻処理
+Route::group(['middleware' => ['auth', 'can:user']], function() {
+  Route::post('/api/user/timestamp/punchin', 'UserController@punchIn')->name('user/timestamp/punchin');
+  Route::post('/api/user/timestamp/punchout', 'UserController@punchOut')->name('user/timestamp/pucnchout');
+});
+
 // Other
 Route::get('/{any}', function () {
   return view('home');
