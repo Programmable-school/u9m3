@@ -90694,16 +90694,14 @@ var render = function() {
           "div",
           { staticClass: "card card-default" },
           [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Example Component")
-            ]),
+            _c("div", { staticClass: "card-header" }, [_vm._v("出退勤管理")]),
             _vm._v(" "),
             _c(
               "div",
               { staticClass: "card-body" },
               [
                 _vm._v(
-                  "\n                  I'm an example compopnent\n                  "
+                  "\n                  おはようございます！！\n                  "
                 ),
                 _c("div", { staticClass: "roledetail" }, [
                   _vm._v("\n                    ID: " + _vm._s(_vm.id)),
@@ -93705,7 +93703,7 @@ var render = function() {
                   _vm._s(_vm.$route.meta.name) +
                   " " +
                   _vm._s(/* 社員管理 */) +
-                  "\n        "
+                  "\n      "
               ),
               _c("user-dialog", {
                 ref: "userDialog",
