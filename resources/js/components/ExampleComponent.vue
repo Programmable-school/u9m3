@@ -79,7 +79,20 @@ export default {
             }
           }.bind(this)
         );
-    }
+    },
+    save() {
+        if (process.env.MIX_DEBUG) console.log("User Dialog func save")
+
+        // 変更があった時だけ通信
+        if (JSON.stringify(this.orig).replace(/[\s|　]+/g,'') !== JSON.stringify(this.items).replace(/[\s|　]+/g,'')){
+          this.store()
+        } 
+
+        // 変更がなければただ閉じる
+        else {
+          this.close()
+        }
+      },
   }
 };
 </script>
