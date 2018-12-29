@@ -37,6 +37,6 @@ class User extends Authenticatable
     // ユーザの出退勤リスト 
     public function timestamps()
     {
-        $this->hasMany(Timestamps::class);
+        return $this->hasMany(Timestamps::class);
     }
 }
