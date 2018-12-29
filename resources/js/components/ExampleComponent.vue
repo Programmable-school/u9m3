@@ -17,11 +17,11 @@
 
                     <v-card>
                       <div class="text-xs-center">
-                      <v-btn round large dark color="indigo">
+                      <v-btn round large dark color="indigo" v-on:click="axiosPunchin">
                         <v-icon dark>出勤</v-icon>
                       </v-btn>
 
-                      <v-btn round large dark color="pink">
+                      <v-btn round large dark color="pink" v-on:click="axiosPunchout">
                         <v-icon dark>退勤</v-icon>
                       </v-btn>
                       
@@ -79,7 +79,62 @@ export default {
             }
           }.bind(this)
         );
+    },
+
+    axiosPunchin() {
+      axios
+        .post(this.punchin)
+        .then(
+          function(response) {
+            console.log(response);
+          }.bind(this)
+        )
+
+        .catch(
+          function(error) {
+            console.log(error);
+            if (error.response) {
+              if (error.response.status) {
+                if (
+                  error.response.status == 401 ||
+                  error.response.status == 419
+                ) {
+                  var parser = new URL(this.punchin);
+                  location.href = parser.origin;
+                }
+              }
+            }
+          }.bind(this)
+        );
+    },
+
+    axiosPunchout() {
+      axios
+        .post(this.punchout)
+        .then(
+          function(response) {
+            consoel.log(response);
+          }.bind(this)
+        )
+
+        .catch(
+          function(error) {
+            console.log(error);
+            if (error.response) {
+              if (error.response.status) {
+                if (
+                  error.response.status == 401 ||
+                  error.response.status == 419
+                ) {
+                  var perser = new URL(thsi.punchout);
+                  location.href = parser.origin;
+                }
+              }
+            }
+          }.bind(this)
+        );
     }
+
   }
 };
 </script>
