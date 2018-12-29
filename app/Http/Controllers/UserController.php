@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use App\User;
+use App\Timestamp;
 use Validator;
 use App\Facades\Csv;
 use App\Http\Requests\UploadCsvFile;
@@ -262,4 +263,54 @@ class UserController extends Controller
         // チェック結果を戻す
         return $validator;
     }
+
+    /**
+     * 出勤打刻
+     */
+    public function punchIn(Request $request)
+    {
+        Log::Debug(__CLASS__.':'.__FUNCTION__, $request->all());
+
+        // $request(Vue側で打刻したデータやUser情報)を$dataに代入
+        $data = $request->all();
+
+        // $dataに出勤打刻['punchin']がなかったらエラーを返す
+        if(! $data['punchin']) {
+            return response()->json(['message' => '打刻エラーが発生しました'], 422);
+        }
+        
+        // DB(timestamps) にデータを追加
+        $timestamp = Timestamp::create([
+            'punchin' => $data['panchin'], // 打刻時間
+            'user_id' => $data['id']       // 打刻したユーザ
+        ]);
+
+        // 打刻した情報をVue側に返す
+        return ['timestamp' => $timestamp];
+    }
+
+    public function punchOut(Request $requset)
+    {
+        Log::Debug(__CLASS__.':'.__FUNCTION__, $request->all());
+
+        $data = $request->all();
+
+        if(! $data['punchout']) {
+            return response()->json(['message' => '打刻エラーが発生しました'], 422);
+        }
+        
+        $record = User::timestamp()->latest()->first();
+        if($record['punchout'] === null ) {
+            update([
+                'punchout' => $data['punchout']
+            ]);
+            
+
+        } else {
+        return response()->json(['message' => '既に打刻されているか、出勤打刻がされていません'], 422);
+        }
+
+
+    }
+    
 }
