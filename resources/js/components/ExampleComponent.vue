@@ -24,7 +24,7 @@
                       <v-btn round large dark color="pink" v-on:click="axiosPunchout">
                         <v-icon dark>退勤</v-icon>
                       </v-btn>
-                      
+
                       </div>
                     </v-card>
                 </div>
@@ -83,7 +83,7 @@ export default {
 
     axiosPunchin() {
       axios
-        .post(this.punchin)
+        .post('user/timestamp/punchin')
         .then(
           function(response) {
             console.log(response);
@@ -110,7 +110,7 @@ export default {
 
     axiosPunchout() {
       axios
-        .post(this.punchout)
+        .post('user/timestamp/punchout')
         .then(
           function(response) {
             consoel.log(response);
