@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+
 class User extends Authenticatable
 {
     use Notifiable;
@@ -32,4 +33,10 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    // ユーザの出退勤リスト 
+    public function timestamps()
+    {
+        return $this->hasMany(Timestamps::class);
+    }
 }
