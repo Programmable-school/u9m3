@@ -42,7 +42,7 @@ class UserController extends Controller
         
         // return 
         return ['data' => $user,
-                'data2' => $timestamps,
+                'timestamps' => $timestamps,
             ];
     }
 
@@ -307,9 +307,8 @@ class UserController extends Controller
             update([
                 'punchout' => $data['punchout']
             ]);
-            
-
         } else {
+
         return response()->json(['message' => '既に打刻されているか、出勤打刻がされていません'], 422);
         }
 
