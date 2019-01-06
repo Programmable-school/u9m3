@@ -34,14 +34,17 @@ class UserController extends Controller
         }
 
         $user = User::where('loginid', $data['loginid'])->first();
-
         if (! $user) {
             return response()->json(['message' => 'User Not Found'], 422);
         }
+        $timestamps = Timestamp::where('user_id', $user->id)->get();
 
-        return ['data' => $user];
+        
+        // return 
+        return ['data' => $user,
+                'data2' => $timestamps,
+            ];
     }
-
 
     public function download(Request $request)
     {
@@ -53,7 +56,7 @@ class UserController extends Controller
     }
 
 
-  //public function upload(Request $request)
+    //public function upload(Request $request)
     public function upload(UploadCsvFile $request)
     {
         Log::Debug(__CLASS__.':'.__FUNCTION__, $request->all());
