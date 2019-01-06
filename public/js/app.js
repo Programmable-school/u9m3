@@ -90677,7 +90677,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }.bind(this));
     },
     axiosPunchin: function axiosPunchin() {
-      axios.post('user/timestamp/punchin').then(function (response) {
+      axios.post('/api/user/timestamp/punchin').then(function (response) {
         console.log(response);
       }.bind(this)).catch(function (error) {
         console.log(error);
@@ -90692,7 +90692,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }.bind(this));
     },
     axiosPunchout: function axiosPunchout() {
-      axios.post('user/timestamp/punchout').then(function (response) {
+      axios.post('/api/user/timestamp/punchout').then(function (response) {
         consoel.log(response);
       }.bind(this)).catch(function (error) {
         console.log(error);

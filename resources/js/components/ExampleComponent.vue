@@ -83,7 +83,7 @@ export default {
 
     axiosPunchin() {
       axios
-        .post('user/timestamp/punchin')
+        .post('/api/user/timestamp/punchin')
         .then(
           function(response) {
             console.log(response);
@@ -110,7 +110,7 @@ export default {
 
     axiosPunchout() {
       axios
-        .post('user/timestamp/punchout')
+        .post('/api/user/timestamp/punchout')
         .then(
           function(response) {
             consoel.log(response);
