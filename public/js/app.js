@@ -90675,6 +90675,36 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           }
         }
       }.bind(this));
+    },
+    axiosPunchin: function axiosPunchin() {
+      axios.post('user/timestamp/punchin').then(function (response) {
+        console.log(response);
+      }.bind(this)).catch(function (error) {
+        console.log(error);
+        if (error.response) {
+          if (error.response.status) {
+            if (error.response.status == 401 || error.response.status == 419) {
+              var parser = new URL(this.punchin);
+              location.href = parser.origin;
+            }
+          }
+        }
+      }.bind(this));
+    },
+    axiosPunchout: function axiosPunchout() {
+      axios.post('user/timestamp/punchout').then(function (response) {
+        consoel.log(response);
+      }.bind(this)).catch(function (error) {
+        console.log(error);
+        if (error.response) {
+          if (error.response.status) {
+            if (error.response.status == 401 || error.response.status == 419) {
+              var perser = new URL(thsi.punchout);
+              location.href = parser.origin;
+            }
+          }
+        }
+      }.bind(this));
     }
   }
 });
@@ -90729,7 +90759,13 @@ var render = function() {
                   _c(
                     "v-btn",
                     {
-                      attrs: { round: "", large: "", dark: "", color: "indigo" }
+                      attrs: {
+                        round: "",
+                        large: "",
+                        dark: "",
+                        color: "indigo"
+                      },
+                      on: { click: _vm.axiosPunchin }
                     },
                     [_c("v-icon", { attrs: { dark: "" } }, [_vm._v("出勤")])],
                     1
@@ -90738,7 +90774,8 @@ var render = function() {
                   _c(
                     "v-btn",
                     {
-                      attrs: { round: "", large: "", dark: "", color: "pink" }
+                      attrs: { round: "", large: "", dark: "", color: "pink" },
+                      on: { click: _vm.axiosPunchout }
                     },
                     [_c("v-icon", { attrs: { dark: "" } }, [_vm._v("退勤")])],
                     1
@@ -93705,7 +93742,7 @@ var render = function() {
                   _vm._s(_vm.$route.meta.name) +
                   " " +
                   _vm._s(/* 社員管理 */) +
-                  "\n        "
+                  "\n      "
               ),
               _c("user-dialog", {
                 ref: "userDialog",
