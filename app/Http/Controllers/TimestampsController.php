@@ -37,7 +37,7 @@ class TimestampsController extends Controller
         if(!empty($timestamp->punchOut)) {
             return response()->json(['message' => '既に退勤の打刻がされているか、出勤打刻がされていません']);
         }
-        $timstamp->update([
+        $timestamp->update([
             'punchOut' => Carbon::now()
         ]);
     }
