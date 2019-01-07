@@ -94142,7 +94142,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     getUsers: function getUsers() {
       if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_DEBUG) console.log("User Component getUsers");
       this.loading = true;
-      axios.post("/api/admin/user").then(function (response) {
+      axios.post('/api/admin/user/show').then(function (response) {
         this.loading = false;
         if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_DEBUG) console.log(response);
         if (response.data.users) {

@@ -106,7 +106,7 @@ export default {
       if (process.env.MIX_DEBUG) console.log("User Component getUsers");
       this.loading = true;
       axios
-        .post("/api/admin/user")
+        .post('/api/admin/user/show')
 
         .then(
           function(response) {
