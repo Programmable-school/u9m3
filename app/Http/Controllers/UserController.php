@@ -29,19 +29,21 @@ class UserController extends Controller
 
         $data = $request->all();
 
-        if (trim($data['loginid'] == '')) {
-            return response()->json(['message' => 'loginID Not Found'], 422);
+        if (trim($data['id'] == '')) {
+            return response()->json(['message' => 'User Not Found'], 422);
         }
 
-        $user = User::where('loginid', $data['loginid'])->first();
-
+        $user = User::where('id', $data['id'])->first();
         if (! $user) {
             return response()->json(['message' => 'User Not Found'], 422);
         }
 
-        return ['data' => $user];
+        $timestamps = $user->timestamps()->paginate(30);
+        
+        return ['data' => $user,
+                'timestamps' => $timestamps,
+            ];
     }
-
 
     public function download(Request $request)
     {
@@ -53,7 +55,7 @@ class UserController extends Controller
     }
 
 
-  //public function upload(Request $request)
+    //public function upload(Request $request)
     public function upload(UploadCsvFile $request)
     {
         Log::Debug(__CLASS__.':'.__FUNCTION__, $request->all());
@@ -151,7 +153,7 @@ class UserController extends Controller
 
         $data = $request->all();
 
-        // loginID 指定あり？
+        // $data->loginidなければエラーで返す 
         if (trim($data['loginid'] == '')) {
             return response()->json(['message' => 'loginID Not Found' ], 422);
         }
@@ -304,9 +306,8 @@ class UserController extends Controller
             update([
                 'punchout' => $data['punchout']
             ]);
-            
-
         } else {
+
         return response()->json(['message' => '既に打刻されているか、出勤打刻がされていません'], 422);
         }
 

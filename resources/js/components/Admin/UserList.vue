@@ -3,7 +3,11 @@
     <v-card xs12 class="m-3 px-3">
 
       <v-card-title class="title">
+<<<<<<< HEAD
         <v-icon class="pr-2">{{ $route.meta.icon }}</v-icon> 勤怠管理 {{ /* 社員管理 */ }}
+=======
+        <v-icon class="pr-2">{{ $route.meta.icon }}</v-icon> {{ $route.meta.name }} {{ /* 社員管理 */ }}
+>>>>>>> 新出勤リスト
       </v-card-title>
 
       <v-data-table
@@ -92,12 +96,21 @@ export default {
     },
 
     getUsers() {
+<<<<<<< HEAD
        if (process.env.MIX_DEBUG) console.log("User Dialog func destroy")
         var params = new URLSearchParams()
         params.append('loginid', this.items.loginid)
       this.loading = true;
       axios
         .post("/api/admin/user/show")
+=======
+      if (process.env.MIX_DEBUG) console.log("User Punchin-out list")
+        var params = new URLSearchParams()
+        params.append('id', this.items.id)
+      this.loading = true;
+      axios
+        .post('/api/admin/user/show', params)
+>>>>>>> 新出勤リスト
 
         .then(
           function(response) {
