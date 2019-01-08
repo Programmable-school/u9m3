@@ -29,11 +29,11 @@ class UserController extends Controller
 
         $data = $request->all();
 
-        if (trim($data['loginid'] == '')) {
-            return response()->json(['message' => 'loginID Not Found'], 422);
+        if (trim($data['id'] == '')) {
+            return response()->json(['message' => 'User Not Found'], 422);
         }
 
-        $user = User::where('loginid', $data['loginid'])->first();
+        $user = User::where('id', $data['id'])->first();
         if (! $user) {
             return response()->json(['message' => 'User Not Found'], 422);
         }
@@ -153,7 +153,7 @@ class UserController extends Controller
 
         $data = $request->all();
 
-        // loginID 指定あり？
+        // $data->loginidなければエラーで返す 
         if (trim($data['loginid'] == '')) {
             return response()->json(['message' => 'loginID Not Found' ], 422);
         }
