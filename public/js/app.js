@@ -94129,11 +94129,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.search = id;
     },
     getUsers: function getUsers() {
+<<<<<<< HEAD
+      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_DEBUG) console.log("User Dialog func destroy");
+      var params = new URLSearchParams();
+      params.append('loginid', this.items.loginid);
+      this.loading = true;
+      axios.post("/api/admin/user/show").then(function (response) {
+=======
       if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_DEBUG) console.log("User Punchin-out list");
       var params = new URLSearchParams();
       params.append('id', this.items.id);
       this.loading = true;
       axios.post('/api/admin/user/show', params).then(function (response) {
+>>>>>>> 新出勤リスト
         this.loading = false;
         if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_DEBUG) console.log(response);
         if (response.data.users) {
@@ -94189,6 +94197,9 @@ var render = function() {
               _c("v-icon", { staticClass: "pr-2" }, [
                 _vm._v(_vm._s(_vm.$route.meta.icon))
               ]),
+<<<<<<< HEAD
+              _vm._v(" 勤怠管理 " + _vm._s(/* 社員管理 */) + "\n    ")
+=======
               _vm._v(
                 " " +
                   _vm._s(_vm.$route.meta.name) +
@@ -94196,6 +94207,7 @@ var render = function() {
                   _vm._s(/* 社員管理 */) +
                   "\n    "
               )
+>>>>>>> 新出勤リスト
             ],
             1
           ),
