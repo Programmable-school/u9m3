@@ -4,17 +4,6 @@
 
       <v-card-title class="title">
         <v-icon class="pr-2">{{ $route.meta.icon }}</v-icon> {{ $route.meta.name }} {{ /* 社員管理 */ }}
-        <user-dialog ref="userDialog" @reload="reload" @setsearch="setsearch"></user-dialog>
-        <v-spacer></v-spacer>
-        <v-spacer></v-spacer>
-        <v-text-field
-          v-model="search"
-          prepend-icon="search"
-          label="Search"
-          single-line
-          hide-details
-          clearable
-        ></v-text-field>
       </v-card-title>
 
       <v-data-table
@@ -103,10 +92,12 @@ export default {
     },
 
     getUsers() {
-      if (process.env.MIX_DEBUG) console.log("User Component getUsers");
+      if (process.env.MIX_DEBUG) console.log("User Punchin-out list")
+        var params = new URLSearchParams()
+        params.append('id', this.items.id)
       this.loading = true;
       axios
-        .post('/api/admin/user/show')
+        .post('/api/admin/user/show', params)
 
         .then(
           function(response) {

@@ -94076,17 +94076,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -94140,9 +94129,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.search = id;
     },
     getUsers: function getUsers() {
-      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_DEBUG) console.log("User Component getUsers");
+      if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_DEBUG) console.log("User Punchin-out list");
+      var params = new URLSearchParams();
+      params.append('id', this.items.id);
       this.loading = true;
-      axios.post('/api/admin/user/show').then(function (response) {
+      axios.post('/api/admin/user/show', params).then(function (response) {
         this.loading = false;
         if (Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_DEBUG) console.log(response);
         if (response.data.users) {
@@ -94203,33 +94194,8 @@ var render = function() {
                   _vm._s(_vm.$route.meta.name) +
                   " " +
                   _vm._s(/* 社員管理 */) +
-                  "\n      "
-              ),
-              _c("user-dialog", {
-                ref: "userDialog",
-                on: { reload: _vm.reload, setsearch: _vm.setsearch }
-              }),
-              _vm._v(" "),
-              _c("v-spacer"),
-              _vm._v(" "),
-              _c("v-spacer"),
-              _vm._v(" "),
-              _c("v-text-field", {
-                attrs: {
-                  "prepend-icon": "search",
-                  label: "Search",
-                  "single-line": "",
-                  "hide-details": "",
-                  clearable: ""
-                },
-                model: {
-                  value: _vm.search,
-                  callback: function($$v) {
-                    _vm.search = $$v
-                  },
-                  expression: "search"
-                }
-              })
+                  "\n    "
+              )
             ],
             1
           ),
