@@ -7,6 +7,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 
+
 class User extends Authenticatable
 {
     use Notifiable;
@@ -37,6 +38,6 @@ class User extends Authenticatable
     // ユーザの出退勤リスト 
     public function timestamps()
     {
-        return $this->hasMany(Timestamps::class);
+        return $this->hasMany(Timestamp::class);
     }
 }
