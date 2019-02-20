@@ -38,7 +38,7 @@ class UserController extends Controller
             return response()->json(['message' => 'User Not Found'], 422);
         }
 
-        $timestamps = $user->timestamps()->paginate(30);
+        $timestamps = $user->timestamps()->all();
         
         return ['data' => $user,
                 'timestamps' => $timestamps,
